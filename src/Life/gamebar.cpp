@@ -1,4 +1,4 @@
-#include "gamebar.h"
+#include "Life/gamebar.h"
 
 namespace Life
 {

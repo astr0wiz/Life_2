@@ -1,4 +1,4 @@
-#include "resourcemanager.h"
+#include "Assets/resourcemanager.h"
 
 namespace Assets
 {

@@ -1,9 +1,6 @@
 #include <iostream>
 #include <TGUI/TGUI.hpp>
-#include "Colors.h"
-#include "mapdata.h"
-#include "menuwindow.h"
-#include "menubar.h"
+#include "Assets/Colors.h"
 #include "Assets/resourcemanager.h"
 #include "Life/gamewindow.h"
 
