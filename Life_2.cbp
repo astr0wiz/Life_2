@@ -12,7 +12,9 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-std=c++17" />
 					<Add option="-g" />
+					<Add directory="include/Life" />
 				</Compiler>
 				<ExtraCommands>
 					<Add after="~/scripts/Life_2_Debug_Resources.sh" />
@@ -26,6 +28,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="include/Life" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -35,6 +38,8 @@
 		<Compiler>
 			<Add option="-Wall" />
 			<Add directory="../SFML-2.5.1/include" />
+			<Add directory="src" />
+			<Add directory="include" />
 		</Compiler>
 		<Linker>
 			<Add library="tgui" />
@@ -45,16 +50,25 @@
 		</Linker>
 		<Unit filename="include/Assets/Colors.h" />
 		<Unit filename="include/Assets/resourcemanager.h" />
+		<Unit filename="include/ConvertUTF.h" />
+		<Unit filename="include/Life/game.h" />
 		<Unit filename="include/Life/gamebar.h" />
 		<Unit filename="include/Life/gamewindow.h" />
 		<Unit filename="include/Life/pubsub.h" />
+		<Unit filename="include/Life/utils.h" />
 		<Unit filename="include/Scenes/menuscene.h" />
 		<Unit filename="include/Scenes/scene.h" />
+		<Unit filename="include/SimpleIni.h" />
 		<Unit filename="src/Assets/Colors.cpp" />
 		<Unit filename="src/Assets/resourcemanager.cpp" />
+		<Unit filename="src/ConvertUTF.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/Life/game.cpp" />
 		<Unit filename="src/Life/gamebar.cpp" />
 		<Unit filename="src/Life/gamewindow.cpp" />
 		<Unit filename="src/Life/pubsub.cpp" />
+		<Unit filename="src/Life/utils.cpp" />
 		<Unit filename="src/Scenes/menuscene.cpp" />
 		<Unit filename="src/Scenes/scene.cpp" />
 		<Unit filename="src/main.cpp" />

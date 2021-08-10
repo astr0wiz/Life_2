@@ -7,8 +7,8 @@
 #include "gamebar.h"
 #include "Assets/resourcemanager.h"
 #include "Scenes/menuscene.h"
-
 #include <TGUI/TGUI.hpp>
+#include "Life/utils.h"
 
 namespace Life
 {
@@ -17,14 +17,21 @@ namespace Life
     class GameWindow : public EventPublisher
     {
     public:
-        GameWindow(std::shared_ptr<Assets::ResourceManager> resourceManager);
+        GameWindow( std::shared_ptr<Assets::ResourceManager> resourceManager );
         virtual ~GameWindow();
         void setupBaseWindow();
-        void setupGameBar(std::shared_ptr<Assets::ResourceManager> resourceManager);
+        void setupTgui();
+        void setupGameBar( std::shared_ptr<Assets::ResourceManager> resourceManager );
         void setupBackground();
-        void setupMenuing();
-        sf::Vector2f getBaseWindowSize(){return baseWinSize;}
+        void setupScenes( std::shared_ptr<Assets::ResourceManager> resourceManager );
+        sf::Vector2f getBaseWindowSize()
+        {
+            return baseWinSize;
+        }
         void run();
+        void AddScene(std::shared_ptr<Scenes::Scene> scene);
+
+    public:
         tgui::GuiSFML gui;
 
     protected:
@@ -35,7 +42,7 @@ namespace Life
         sf::Vector2f baseWinSize{0., 0.};
         std::shared_ptr<Gamebar> gamebar;
         std::shared_ptr<Assets::ResourceManager> resourceMgr;
-        std::map<std::string,Scenes::Scene> scenes;
+        std::map<std::string, std::shared_ptr<Scenes::Scene>> scenes;
     };
 }
 #endif // GAMEWINDOW_H

@@ -15,7 +15,8 @@ namespace Scenes
         virtual ~MenuScene();
         void show();
         void hide();
-        void init( tgui::GuiSFML* gui, sf::Vector2f windowSize );
+        void init( sf::Vector2f windowSize, tgui::GuiSFML* gui, std::shared_ptr<Assets::ResourceManager> resourceManager);
+        bool isVisible();
     public:
         tgui::Group::Ptr menuGroup;
 
@@ -25,6 +26,7 @@ namespace Scenes
         sf::Font menuFont;
         sf::RectangleShape screen;
         sf::Text titleText;
+        //tgui::Panel::Ptr panel;
 
     private:
         virtual void draw( sf::RenderTarget& target, sf::RenderStates states ) const;

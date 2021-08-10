@@ -421,14 +421,16 @@
 	<SFML/Window/Event.hpp>
 	<list>
 
-1628127160 source:/nixdev/dev/cpp/prj/Life_2/src/Assets/resourcemanager.cpp
+1628566652 source:/nixdev/dev/cpp/prj/Life_2/src/Assets/resourcemanager.cpp
 	"Assets/resourcemanager.h"
 
-1628124943 /nixdev/dev/cpp/prj/Life_2/include/Assets/resourcemanager.h
+1628566722 /nixdev/dev/cpp/prj/Life_2/include/Assets/resourcemanager.h
 	<iostream>
+	<memory>
 	<sys/types.h>
 	<sys/stat.h>
 	<SFML/Graphics/Font.hpp>
+	"Life/utils.h"
 
 1628127160 source:/nixdev/dev/cpp/prj/Life_2/src/Life/gamebar.cpp
 	"Life/gamebar.h"
@@ -445,10 +447,10 @@
 	<sys/stat.h>
 	"Assets/resourcemanager.h"
 
-1628127101 source:/nixdev/dev/cpp/prj/Life_2/src/Life/gamewindow.cpp
+1628560284 source:/nixdev/dev/cpp/prj/Life_2/src/Life/gamewindow.cpp
 	"Life/gamewindow.h"
 
-1628124943 /nixdev/dev/cpp/prj/Life_2/include/Life/gamewindow.h
+1628560284 /nixdev/dev/cpp/prj/Life_2/include/Life/gamewindow.h
 	<memory>
 	<SFML/Graphics.hpp>
 	"pubsub.h"
@@ -456,19 +458,74 @@
 	"Assets/resourcemanager.h"
 	"Scenes/menuscene.h"
 	<TGUI/TGUI.hpp>
+	"Life/utils.h"
 
-1628124943 /nixdev/dev/cpp/prj/Life_2/include/Scenes/menuscene.h
+1628382758 /nixdev/dev/cpp/prj/Life_2/include/Scenes/menuscene.h
 	"Scenes/scene.h"
 	<TGUI/TGUI.hpp>
 	<SFML/Graphics.hpp>
 	"Assets/Colors.h"
 
-1628124943 /nixdev/dev/cpp/prj/Life_2/include/Scenes/scene.h
+1628382571 /nixdev/dev/cpp/prj/Life_2/include/Scenes/scene.h
+	<memory>
+	<TGUI/TGUI.hpp>
 	<SFML/Graphics.hpp>
+	"Assets/resourcemanager.h"
 
-1628127160 source:/nixdev/dev/cpp/prj/Life_2/src/Scenes/menuscene.cpp
+1628566722 source:/nixdev/dev/cpp/prj/Life_2/src/Scenes/menuscene.cpp
 	"Scenes/menuscene.h"
 
 1628127160 source:/nixdev/dev/cpp/prj/Life_2/src/Scenes/scene.cpp
 	"Scenes/scene.h"
+
+1628560230 source:/nixdev/dev/cpp/prj/Life_2/src/main.cpp
+	<iostream>
+	<TGUI/TGUI.hpp>
+	"Assets/Colors.h"
+	"Assets/resourcemanager.h"
+	"Life/gamewindow.h"
+	"Life/utils.h"
+
+1628559439 source:/nixdev/dev/cpp/prj/Life_2/src/Life/game.cpp
+	"game.h"
+
+1628559439 /nixdev/dev/cpp/prj/Life_2/include/Life/game.h
+	<string>
+	"Life/utils.h"
+
+1628566453 /nixdev/dev/cpp/prj/Life_2/include/Life/utils.h
+	"limits.h"
+	<unistd.h>
+	<filesystem>
+	<sys/types.h>
+	<sys/stat.h>
+	<string>
+	<iostream>
+	"SimpleIni.h"
+
+1592713539 /nixdev/dev/cpp/prj/Life_2/include/SimpleIni.h
+	<cstring>
+	<cstdlib>
+	<string>
+	<map>
+	<list>
+	<algorithm>
+	<stdio.h>
+	<iostream>
+	<cassert>
+	<unicode/ustring.h>
+	<wchar.h>
+	"ConvertUTF.h"
+	<unicode/ucnv.h>
+	<windows.h>
+	<mbstring.h>
+
+1592713539 /nixdev/dev/cpp/prj/Life_2/include/ConvertUTF.h
+
+1592713539 source:/nixdev/dev/cpp/prj/Life_2/src/ConvertUTF.c
+	"ConvertUTF.h"
+	<stdio.h>
+
+1628566453 source:/nixdev/dev/cpp/prj/Life_2/src/Life/utils.cpp
+	"utils.h"
 

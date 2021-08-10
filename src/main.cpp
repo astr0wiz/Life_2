@@ -3,6 +3,7 @@
 #include "Assets/Colors.h"
 #include "Assets/resourcemanager.h"
 #include "Life/gamewindow.h"
+#include "Life/utils.h"
 
 using namespace std;
 
@@ -14,6 +15,7 @@ sf::RenderWindow window;
 sf::RectangleShape backdrop;
 sf::Clock timer;
 
+std::shared_ptr<Life::Utils> utilities{new Life::Utils};
 std::shared_ptr<Assets::ResourceManager> resourceManager{new Assets::ResourceManager};
 
 
@@ -21,7 +23,7 @@ void runGame();
 
 int main()
 {
-    resourceManager->setResourceDirectory( "resources" );
+    resourceManager->init(utilities);
     resourceManager->setMainFont( "ITCKRIST.TTF" );
 
     runGame();

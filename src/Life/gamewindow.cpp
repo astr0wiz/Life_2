@@ -5,9 +5,10 @@ namespace Life
     GameWindow::GameWindow( std::shared_ptr<Assets::ResourceManager> resourceManager )
     {
         setupBaseWindow();
+        setupTgui();
         setupGameBar( resourceManager );
         setupBackground();
-        setupMenuing();
+        setupScenes( resourceManager );
     }
 
     GameWindow::~GameWindow()
@@ -44,20 +45,30 @@ namespace Life
     void GameWindow::setupGameBar( std::shared_ptr<Assets::ResourceManager> resourceManager )
     {
         std::cout << "Setting up gamebar" << std::endl;
-        gamebar = std::make_shared<Gamebar>(resourceManager->getMainFont());
+        gamebar = std::make_shared<Gamebar>( resourceManager->getMainFont() );
         std::cout << "Updating gamebar size and title" << std::endl;
         gamebar->updateSizeAndTitle( baseWinSize.x, gameTitle );
     }
 
-    void GameWindow::setupMenuing()
+    void GameWindow::setupScenes( std::shared_ptr<Assets::ResourceManager> resourceManager )
     {
-        gui.setTarget(window);
-        scenes.emplace("Menu",Scenes::MenuScene());
+        scenes.insert(std::make_pair<std::string,std::shared_ptr<Scenes::Scene>>( "Menu", std::make_shared<Scenes::MenuScene>()));
+        scenes["Menu"]->init( baseWinSize, &gui, resourceManager );
     }
+
+    void GameWindow::setupTgui()
+    {
+        gui.setTarget( window );
+    }
+
+
 
     void GameWindow::run()
     {
         std::cout << "Running..." << std::endl;
+
+        scenes["Menu"]->show();
+
         while( window.isOpen() )
         {
             sf::Event event;
@@ -76,11 +87,21 @@ namespace Life
                             break;
                     }
                 }
+                if(scenes["Menu"]->isVisible())
+                {
+                    gui.handleEvent( event );
+                }
             }
+
 
             window.clear( sf::Color2::Rich_Black );
 
             window.draw( *gamebar );
+            for (const auto& [key,scene]:scenes)
+            {
+                window.draw(*scene);
+            }
+            gui.draw();
             window.display();
         }
     }
