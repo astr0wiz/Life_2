@@ -88,7 +88,6 @@ void runGame()
 **    map.simpleTest01();
 **    map.simpleTest02();
 **
-**
 **    window.setFramerateLimit( 60 );
 **    timer.restart();
 **    menubar.resetTimer();
