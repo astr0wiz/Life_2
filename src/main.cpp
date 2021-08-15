@@ -4,6 +4,7 @@
 #include "Assets/resourcemanager.h"
 #include "Life/gamewindow.h"
 #include "Life/utils.h"
+#include "enginelogger.hpp"
 
 using namespace std;
 
@@ -23,6 +24,7 @@ void runGame();
 
 int main()
 {
+    ELogger::InitLog();
     resourceManager->init(utilities);
     resourceManager->setMainFont( "ITCKRIST.TTF" );
 

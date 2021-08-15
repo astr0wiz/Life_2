@@ -10,6 +10,8 @@
 #include <string>
 #include <iostream>
 #include "SimpleIni.h"
+#include "constants.h"
+#include "enginelogger.hpp"
 namespace Life
 {
     class Utils
@@ -17,19 +19,22 @@ namespace Life
     public:
         Utils();
         virtual ~Utils();
+        std::string getExePath();
         std::string getNextSaveFileName( std::string baseName );
         std::string getResourceDirectory();
         std::string getResourcePath(std::string resourceName);
+        std::string getSaveGameDirectory();
+        std::string getSaveGamePath(std::string saveGameName);
 
     private:
-        std::string getValueFromIni( std::string section, std::string key );
+        std::string getValueFromIni( std::string section, const char* key );
         void setValueToIni( std::string section, std::string key, std::string value );
         void saveIniFile();
 
     private:
         CSimpleIniA ini;
         bool iniFileLoaded{true};
-        bool setResourceDirectory( std::string path );
+        bool setCachedDirectory( std::string path, const char* iniTag );
         std::filesystem::path currentDirectory;
     };
 

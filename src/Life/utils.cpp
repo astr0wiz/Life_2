@@ -4,20 +4,8 @@ namespace Life
 {
     Utils::Utils()
     {
-        char pBuf[PATH_MAX];
-        int bytes = readlink( "/proc/self/exe", pBuf, PATH_MAX );
-        if( bytes >= 0 )
-        {
-            pBuf[bytes] = '\0';
-        }
-        else
-        {
-            std::cout << "EPIC FAIL!!!  Cannot get current directory!" << std::endl;
-        }
-        std::filesystem::path p{std::string( pBuf,  bytes > 0  ? bytes : 0 )};
-        currentDirectory =  p.parent_path();
         iniFileLoaded = true;
-        std::filesystem::path currDir = currentDirectory;
+        std::filesystem::path currDir = getExePath();
         currDir  /= "Life.ini";
         std::cout << "INI file is here: " << currDir << std::endl;
         SI_Error rc = ini.LoadFile( currDir.c_str() );
@@ -66,11 +54,11 @@ namespace Life
         }
     }
 
-    std::string Utils::getValueFromIni( std::string section, std::string key )
+    std::string Utils::getValueFromIni( std::string section, const char* key )
     {
         if( iniFileLoaded )
         {
-            return ini.GetValue( section.c_str(), key.c_str(), "" );
+            return ini.GetValue( section.c_str(), key, "" );
         }
         return "";
     }
@@ -88,14 +76,16 @@ namespace Life
         return "";
     }
 
+//{========== Resource Directory ===================================
+
     std::string Utils::getResourceDirectory( )
     {
-        std::string rdir = getValueFromIni( "File", "resourcedir" );
+        std::string rdir = getValueFromIni( "File", COMMON::INITAG_RESOURCEDIR.data() );
         if ( rdir == "" )
         {
-            if( setResourceDirectory( "resources" ) )
+            if( setCachedDirectory( "resources", COMMON::INITAG_RESOURCEDIR.data() ) )
             {
-                rdir = getValueFromIni( "File", "resourcedir" );
+                rdir = getValueFromIni( "File", COMMON::INITAG_RESOURCEDIR.data() );
             }
         }
         std::filesystem::path currDir = currentDirectory;
@@ -103,30 +93,78 @@ namespace Life
         return currDir;
     }
 
-    bool Utils::setResourceDirectory( std::string path )
+    std::string Utils::getResourcePath( std::string resourceName )
+    {
+        std::filesystem::path rdir{getResourceDirectory()};
+        return rdir /= resourceName;
+    }
+
+//}
+
+
+//{========== Save Games Directory =================================
+
+    std::string Utils::getSaveGameDirectory()
+    {
+        std::string rdir = getValueFromIni( "File", COMMON::INITAG_SAVEGAMEDIR.data() );
+        if ( rdir == "" )
+        {
+            if( setCachedDirectory( "saved", COMMON::INITAG_SAVEGAMEDIR.data() ) )
+            {
+                rdir = getValueFromIni( "File", COMMON::INITAG_SAVEGAMEDIR.data() );
+            }
+        }
+        std::filesystem::path currDir = currentDirectory;
+        currDir  /= rdir;
+        return currDir;
+    }
+
+    std::string Utils::getSaveGamePath( std::string saveGameName )
+    {
+        std::filesystem::path rdir{getSaveGameDirectory()};
+        return rdir /= saveGameName;
+    }
+
+//}
+
+    bool Utils::setCachedDirectory( std::string path, const char* iniTag )
     {
         std::filesystem::path currDir = currentDirectory;
         currDir  /= path;
         struct stat info;
         if( stat( currDir.c_str(), &info ) != 0 )
         {
-            std::cout << "ERROR!  Cannot access resource directory '" << currDir << "'" << std::endl;
+            std::cout << "ERROR!  setCachedDirectory: Cannot access directory '" << currDir << "'" << std::endl;
             return false;
         }
         else if( !( info.st_mode & S_IFDIR ) )
         {
-            std::cout << "ERROR!  " << currDir << " is not a directory" << std::endl;
+            std::cout << "ERROR!  setCachedDirectory: '" << currDir << "' is not a directory" << std::endl;
             return false;
         }
-        setValueToIni( "File", "resourcedir", path );
+        setValueToIni( "File", iniTag, path );
         saveIniFile();
         return true;
     }
 
-    std::string Utils::getResourcePath( std::string resourceName )
+    std::string Utils::getExePath()
     {
-        std::filesystem::path rdir{getResourceDirectory()};
-        return rdir /= resourceName;
+        if( currentDirectory.empty() )
+        {
+            char pBuf[PATH_MAX];
+            int bytes = readlink( "/proc/self/exe", pBuf, PATH_MAX );
+            if( bytes >= 0 )
+            {
+                pBuf[bytes] = '\0';
+            }
+            else
+            {
+                std::cout << "EPIC FAIL!!!  Cannot get current directory!" << std::endl;
+            }
+            std::filesystem::path p{std::string( pBuf,  bytes > 0  ? bytes : 0 )};
+            currentDirectory =  p.parent_path();
+        }
+        return currentDirectory;
     }
 
 }

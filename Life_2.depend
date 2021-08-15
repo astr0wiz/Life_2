@@ -472,19 +472,20 @@
 	<SFML/Graphics.hpp>
 	"Assets/resourcemanager.h"
 
-1628566722 source:/nixdev/dev/cpp/prj/Life_2/src/Scenes/menuscene.cpp
+1628566746 source:/nixdev/dev/cpp/prj/Life_2/src/Scenes/menuscene.cpp
 	"Scenes/menuscene.h"
 
 1628127160 source:/nixdev/dev/cpp/prj/Life_2/src/Scenes/scene.cpp
 	"Scenes/scene.h"
 
-1628560230 source:/nixdev/dev/cpp/prj/Life_2/src/main.cpp
+1628999725 source:/nixdev/dev/cpp/prj/Life_2/src/main.cpp
 	<iostream>
 	<TGUI/TGUI.hpp>
 	"Assets/Colors.h"
 	"Assets/resourcemanager.h"
 	"Life/gamewindow.h"
 	"Life/utils.h"
+	"enginelogger.hpp"
 
 1628559439 source:/nixdev/dev/cpp/prj/Life_2/src/Life/game.cpp
 	"game.h"
@@ -493,7 +494,7 @@
 	<string>
 	"Life/utils.h"
 
-1628566453 /nixdev/dev/cpp/prj/Life_2/include/Life/utils.h
+1628998417 /nixdev/dev/cpp/prj/Life_2/include/Life/utils.h
 	"limits.h"
 	<unistd.h>
 	<filesystem>
@@ -502,6 +503,8 @@
 	<string>
 	<iostream>
 	"SimpleIni.h"
+	"constants.h"
+	"enginelogger.hpp"
 
 1592713539 /nixdev/dev/cpp/prj/Life_2/include/SimpleIni.h
 	<cstring>
@@ -526,6 +529,353 @@
 	"ConvertUTF.h"
 	<stdio.h>
 
-1628566453 source:/nixdev/dev/cpp/prj/Life_2/src/Life/utils.cpp
+1628998417 source:/nixdev/dev/cpp/prj/Life_2/src/Life/utils.cpp
 	"utils.h"
+
+1628944505 /nixdev/dev/cpp/prj/Life_2/include/constants.h
+	<string_view>
+
+1628999833 /nixdev/dev/cpp/prj/Life_2/include/enginelogger.hpp
+	<iostream>
+	<spdlog/spdlog.h>
+	<spdlog/sinks/basic_file_sink.h>
+
+1603541828 /nixdev/dev/cpp/lib/spdlog/include/spdlog/spdlog.h
+	<spdlog/common.h>
+	<spdlog/details/registry.h>
+	<spdlog/logger.h>
+	<spdlog/version.h>
+	<spdlog/details/synchronous_factory.h>
+	<chrono>
+	<functional>
+	<memory>
+	<string>
+	"spdlog-inl.h"
+
+1603541828 /nixdev/dev/cpp/lib/spdlog/include/spdlog/common.h
+	<spdlog/tweakme.h>
+	<spdlog/details/null_mutex.h>
+	<atomic>
+	<chrono>
+	<initializer_list>
+	<memory>
+	<exception>
+	<string>
+	<type_traits>
+	<functional>
+	<spdlog/fmt/fmt.h>
+	"common-inl.h"
+
+1603541828 /nixdev/dev/cpp/lib/spdlog/include/spdlog/tweakme.h
+
+1603541828 /nixdev/dev/cpp/lib/spdlog/include/spdlog/details/null_mutex.h
+	<atomic>
+	<utility>
+
+1603541828 /nixdev/dev/cpp/lib/spdlog/include/spdlog/fmt/fmt.h
+	<spdlog/fmt/bundled/core.h>
+	<spdlog/fmt/bundled/format.h>
+	<fmt/core.h>
+	<fmt/format.h>
+
+1603541828 /nixdev/dev/cpp/lib/spdlog/include/spdlog/fmt/bundled/core.h
+	<cstdio>
+	<cstring>
+	<functional>
+	<iterator>
+	<memory>
+	<string>
+	<type_traits>
+	<vector>
+	<string_view>
+	<experimental/string_view>
+	<fmt/core.h>
+
+1603541828 /nixdev/dev/cpp/lib/spdlog/include/spdlog/fmt/bundled/format.h
+	<algorithm>
+	<cerrno>
+	<cmath>
+	<cstdint>
+	<limits>
+	<memory>
+	<stdexcept>
+	"core.h"
+	<intrin.h>
+	<fmt/format.h>
+	"format-inl.h"
+
+1603541828 /nixdev/dev/cpp/lib/spdlog/include/spdlog/fmt/bundled/format-inl.h
+	<cassert>
+	<cctype>
+	<climits>
+	<cmath>
+	<cstdarg>
+	<cstring>
+	<cwchar>
+	<exception>
+	"format.h"
+	<locale>
+	<windows.h>
+	<windows.h>
+	<io.h>
+
+1603541828 /nixdev/dev/cpp/lib/spdlog/include/spdlog/common-inl.h
+	<spdlog/common.h>
+
+1603541828 /nixdev/dev/cpp/lib/spdlog/include/spdlog/details/registry.h
+	<spdlog/common.h>
+	<chrono>
+	<functional>
+	<memory>
+	<string>
+	<unordered_map>
+	<mutex>
+	"registry-inl.h"
+
+1603541828 /nixdev/dev/cpp/lib/spdlog/include/spdlog/details/registry-inl.h
+	<spdlog/details/registry.h>
+	<spdlog/common.h>
+	<spdlog/details/periodic_worker.h>
+	<spdlog/logger.h>
+	<spdlog/pattern_formatter.h>
+	<spdlog/sinks/wincolor_sink.h>
+	<spdlog/sinks/ansicolor_sink.h>
+	<chrono>
+	<functional>
+	<memory>
+	<string>
+	<unordered_map>
+
+1603541828 /nixdev/dev/cpp/lib/spdlog/include/spdlog/details/periodic_worker.h
+	<chrono>
+	<condition_variable>
+	<functional>
+	<mutex>
+	<thread>
+	"periodic_worker-inl.h"
+
+1603541828 /nixdev/dev/cpp/lib/spdlog/include/spdlog/details/periodic_worker-inl.h
+	<spdlog/details/periodic_worker.h>
+
+1603541828 /nixdev/dev/cpp/lib/spdlog/include/spdlog/logger.h
+	<spdlog/common.h>
+	<spdlog/details/log_msg.h>
+	<spdlog/details/backtracer.h>
+	<spdlog/details/os.h>
+	<vector>
+	"logger-inl.h"
+
+1603541828 /nixdev/dev/cpp/lib/spdlog/include/spdlog/details/log_msg.h
+	<spdlog/common.h>
+	<string>
+	"log_msg-inl.h"
+
+1603541828 /nixdev/dev/cpp/lib/spdlog/include/spdlog/details/log_msg-inl.h
+	<spdlog/details/log_msg.h>
+	<spdlog/details/os.h>
+
+1603541828 /nixdev/dev/cpp/lib/spdlog/include/spdlog/details/os.h
+	<spdlog/common.h>
+	<ctime>
+	"os-inl.h"
+
+1603541828 /nixdev/dev/cpp/lib/spdlog/include/spdlog/details/os-inl.h
+	<spdlog/details/os.h>
+	<spdlog/common.h>
+	<algorithm>
+	<chrono>
+	<cstdio>
+	<cstdlib>
+	<cstring>
+	<ctime>
+	<string>
+	<thread>
+	<array>
+	<sys/stat.h>
+	<sys/types.h>
+	<io.h>
+	<process.h>
+	<spdlog/details/windows_include.h>
+	<share.h>
+	<limits>
+	<direct.h>
+	<fcntl.h>
+	<unistd.h>
+	<sys/syscall.h>
+	<pthread.h>
+	<pthread_np.h>
+	<lwp.h>
+	<thread.h>
+
+1603541828 /nixdev/dev/cpp/lib/spdlog/include/spdlog/details/windows_include.h
+	<windows.h>
+
+1603541828 /nixdev/dev/cpp/lib/spdlog/include/spdlog/details/backtracer.h
+	<spdlog/details/log_msg_buffer.h>
+	<spdlog/details/circular_q.h>
+	<atomic>
+	<mutex>
+	<functional>
+	"backtracer-inl.h"
+
+1603541828 /nixdev/dev/cpp/lib/spdlog/include/spdlog/details/log_msg_buffer.h
+	<spdlog/details/log_msg.h>
+	"log_msg_buffer-inl.h"
+
+1603541828 /nixdev/dev/cpp/lib/spdlog/include/spdlog/details/log_msg_buffer-inl.h
+	<spdlog/details/log_msg_buffer.h>
+
+1603541828 /nixdev/dev/cpp/lib/spdlog/include/spdlog/details/circular_q.h
+	<vector>
+	<cassert>
+
+1603541828 /nixdev/dev/cpp/lib/spdlog/include/spdlog/details/backtracer-inl.h
+	<spdlog/details/backtracer.h>
+
+1603541828 /nixdev/dev/cpp/lib/spdlog/include/spdlog/logger-inl.h
+	<spdlog/logger.h>
+	<spdlog/sinks/sink.h>
+	<spdlog/details/backtracer.h>
+	<spdlog/pattern_formatter.h>
+	<cstdio>
+
+1603541828 /nixdev/dev/cpp/lib/spdlog/include/spdlog/sinks/sink.h
+	<spdlog/details/log_msg.h>
+	<spdlog/formatter.h>
+	"sink-inl.h"
+
+1603541828 /nixdev/dev/cpp/lib/spdlog/include/spdlog/formatter.h
+	<spdlog/fmt/fmt.h>
+	<spdlog/details/log_msg.h>
+
+1603541828 /nixdev/dev/cpp/lib/spdlog/include/spdlog/sinks/sink-inl.h
+	<spdlog/sinks/sink.h>
+	<spdlog/common.h>
+
+1603541828 /nixdev/dev/cpp/lib/spdlog/include/spdlog/pattern_formatter.h
+	<spdlog/common.h>
+	<spdlog/details/log_msg.h>
+	<spdlog/details/os.h>
+	<spdlog/formatter.h>
+	<chrono>
+	<ctime>
+	<memory>
+	<string>
+	<vector>
+	<unordered_map>
+	"pattern_formatter-inl.h"
+
+1603541828 /nixdev/dev/cpp/lib/spdlog/include/spdlog/pattern_formatter-inl.h
+	<spdlog/pattern_formatter.h>
+	<spdlog/details/fmt_helper.h>
+	<spdlog/details/log_msg.h>
+	<spdlog/details/os.h>
+	<spdlog/fmt/fmt.h>
+	<spdlog/formatter.h>
+	<array>
+	<chrono>
+	<ctime>
+	<cctype>
+	<cstring>
+	<memory>
+	<mutex>
+	<string>
+	<thread>
+	<utility>
+	<vector>
+
+1603541828 /nixdev/dev/cpp/lib/spdlog/include/spdlog/details/fmt_helper.h
+	<chrono>
+	<type_traits>
+	<spdlog/fmt/fmt.h>
+	<spdlog/common.h>
+
+1603541828 /nixdev/dev/cpp/lib/spdlog/include/spdlog/sinks/wincolor_sink.h
+	<spdlog/common.h>
+	<spdlog/details/console_globals.h>
+	<spdlog/details/null_mutex.h>
+	<spdlog/sinks/sink.h>
+	<memory>
+	<mutex>
+	<string>
+	<array>
+	<spdlog/details/windows_include.h>
+	<wincon.h>
+	"wincolor_sink-inl.h"
+
+1603541828 /nixdev/dev/cpp/lib/spdlog/include/spdlog/details/console_globals.h
+	<spdlog/details/null_mutex.h>
+	<mutex>
+
+1603541828 /nixdev/dev/cpp/lib/spdlog/include/spdlog/sinks/wincolor_sink-inl.h
+	<spdlog/sinks/wincolor_sink.h>
+	<spdlog/common.h>
+	<spdlog/pattern_formatter.h>
+
+1603541828 /nixdev/dev/cpp/lib/spdlog/include/spdlog/sinks/ansicolor_sink.h
+	<spdlog/details/console_globals.h>
+	<spdlog/details/null_mutex.h>
+	<spdlog/sinks/sink.h>
+	<memory>
+	<mutex>
+	<string>
+	<array>
+	"ansicolor_sink-inl.h"
+
+1603541828 /nixdev/dev/cpp/lib/spdlog/include/spdlog/sinks/ansicolor_sink-inl.h
+	<spdlog/sinks/ansicolor_sink.h>
+	<spdlog/pattern_formatter.h>
+	<spdlog/details/os.h>
+
+1603541828 /nixdev/dev/cpp/lib/spdlog/include/spdlog/version.h
+
+1603541828 /nixdev/dev/cpp/lib/spdlog/include/spdlog/details/synchronous_factory.h
+	"registry.h"
+
+1603541828 /nixdev/dev/cpp/lib/spdlog/include/spdlog/spdlog-inl.h
+	<spdlog/spdlog.h>
+	<spdlog/common.h>
+	<spdlog/pattern_formatter.h>
+
+1603541828 /nixdev/dev/cpp/lib/spdlog/include/spdlog/sinks/basic_file_sink.h
+	<spdlog/details/file_helper.h>
+	<spdlog/details/null_mutex.h>
+	<spdlog/sinks/base_sink.h>
+	<spdlog/details/synchronous_factory.h>
+	<mutex>
+	<string>
+	"basic_file_sink-inl.h"
+
+1603541828 /nixdev/dev/cpp/lib/spdlog/include/spdlog/details/file_helper.h
+	<spdlog/common.h>
+	<tuple>
+	"file_helper-inl.h"
+
+1603541828 /nixdev/dev/cpp/lib/spdlog/include/spdlog/details/file_helper-inl.h
+	<spdlog/details/file_helper.h>
+	<spdlog/details/os.h>
+	<spdlog/common.h>
+	<cerrno>
+	<chrono>
+	<cstdio>
+	<string>
+	<thread>
+	<tuple>
+
+1603541828 /nixdev/dev/cpp/lib/spdlog/include/spdlog/sinks/base_sink.h
+	<spdlog/common.h>
+	<spdlog/details/log_msg.h>
+	<spdlog/sinks/sink.h>
+	"base_sink-inl.h"
+
+1603541828 /nixdev/dev/cpp/lib/spdlog/include/spdlog/sinks/base_sink-inl.h
+	<spdlog/sinks/base_sink.h>
+	<spdlog/common.h>
+	<spdlog/pattern_formatter.h>
+	<memory>
+
+1603541828 /nixdev/dev/cpp/lib/spdlog/include/spdlog/sinks/basic_file_sink-inl.h
+	<spdlog/sinks/basic_file_sink.h>
+	<spdlog/common.h>
+	<spdlog/details/os.h>
 
