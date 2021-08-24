@@ -414,12 +414,13 @@
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Window/GlResource.hpp>
 
-1628127101 source:/nixdev/dev/cpp/prj/Life_2/src/Life/pubsub.cpp
+1629637238 source:/nixdev/dev/cpp/prj/Life_2/src/Life/pubsub.cpp
 	"Life/pubsub.h"
 
-1628124943 /nixdev/dev/cpp/prj/Life_2/include/Life/pubsub.h
+1629767910 /nixdev/dev/cpp/prj/Life_2/include/Life/pubsub.h
 	<SFML/Window/Event.hpp>
 	<list>
+	"Scenes/scene.h"
 
 1628566652 source:/nixdev/dev/cpp/prj/Life_2/src/Assets/resourcemanager.cpp
 	"Assets/resourcemanager.h"
@@ -447,10 +448,10 @@
 	<sys/stat.h>
 	"Assets/resourcemanager.h"
 
-1628560284 source:/nixdev/dev/cpp/prj/Life_2/src/Life/gamewindow.cpp
+1629769616 source:/nixdev/dev/cpp/prj/Life_2/src/Life/gamewindow.cpp
 	"Life/gamewindow.h"
 
-1628560284 /nixdev/dev/cpp/prj/Life_2/include/Life/gamewindow.h
+1629769225 /nixdev/dev/cpp/prj/Life_2/include/Life/gamewindow.h
 	<memory>
 	<SFML/Graphics.hpp>
 	"pubsub.h"
@@ -460,32 +461,32 @@
 	<TGUI/TGUI.hpp>
 	"Life/utils.h"
 
-1628382758 /nixdev/dev/cpp/prj/Life_2/include/Scenes/menuscene.h
+1629768847 /nixdev/dev/cpp/prj/Life_2/include/Scenes/menuscene.h
 	"Scenes/scene.h"
 	<TGUI/TGUI.hpp>
 	<SFML/Graphics.hpp>
 	"Assets/Colors.h"
 
-1628382571 /nixdev/dev/cpp/prj/Life_2/include/Scenes/scene.h
+1629768847 /nixdev/dev/cpp/prj/Life_2/include/Scenes/scene.h
 	<memory>
 	<TGUI/TGUI.hpp>
 	<SFML/Graphics.hpp>
 	"Assets/resourcemanager.h"
 
-1628566746 source:/nixdev/dev/cpp/prj/Life_2/src/Scenes/menuscene.cpp
+1629769010 source:/nixdev/dev/cpp/prj/Life_2/src/Scenes/menuscene.cpp
 	"Scenes/menuscene.h"
 
 1628127160 source:/nixdev/dev/cpp/prj/Life_2/src/Scenes/scene.cpp
 	"Scenes/scene.h"
 
-1628999725 source:/nixdev/dev/cpp/prj/Life_2/src/main.cpp
+1629045070 source:/nixdev/dev/cpp/prj/Life_2/src/main.cpp
 	<iostream>
 	<TGUI/TGUI.hpp>
 	"Assets/Colors.h"
 	"Assets/resourcemanager.h"
 	"Life/gamewindow.h"
 	"Life/utils.h"
-	"enginelogger.hpp"
+	"mainlogger.h"
 
 1628559439 source:/nixdev/dev/cpp/prj/Life_2/src/Life/game.cpp
 	"game.h"
@@ -494,7 +495,7 @@
 	<string>
 	"Life/utils.h"
 
-1628998417 /nixdev/dev/cpp/prj/Life_2/include/Life/utils.h
+1629045701 /nixdev/dev/cpp/prj/Life_2/include/Life/utils.h
 	"limits.h"
 	<unistd.h>
 	<filesystem>
@@ -504,7 +505,8 @@
 	<iostream>
 	"SimpleIni.h"
 	"constants.h"
-	"enginelogger.hpp"
+	"mainlogger.h"
+	<sstream>
 
 1592713539 /nixdev/dev/cpp/prj/Life_2/include/SimpleIni.h
 	<cstring>
@@ -529,14 +531,13 @@
 	"ConvertUTF.h"
 	<stdio.h>
 
-1628998417 source:/nixdev/dev/cpp/prj/Life_2/src/Life/utils.cpp
+1629046853 source:/nixdev/dev/cpp/prj/Life_2/src/Life/utils.cpp
 	"utils.h"
 
 1628944505 /nixdev/dev/cpp/prj/Life_2/include/constants.h
 	<string_view>
 
-1628999833 /nixdev/dev/cpp/prj/Life_2/include/enginelogger.hpp
-	<iostream>
+1629041517 /nixdev/dev/cpp/prj/Life_2/include/enginelogger.hpp
 	<spdlog/spdlog.h>
 	<spdlog/sinks/basic_file_sink.h>
 
@@ -878,4 +879,19 @@
 	<spdlog/sinks/basic_file_sink.h>
 	<spdlog/common.h>
 	<spdlog/details/os.h>
+
+1629045070 source:/nixdev/dev/cpp/prj/Life_2/src/mainlogger.cpp
+	"mainlogger.h"
+
+1629045099 /nixdev/dev/cpp/prj/Life_2/include/mainlogger.h
+	"limits.h"
+	<unistd.h>
+	<filesystem>
+	<sys/types.h>
+	<sys/stat.h>
+	<string>
+	<memory>
+	<iostream>
+	<spdlog/spdlog.h>
+	<spdlog/sinks/basic_file_sink.h>
 

@@ -54,6 +54,7 @@ namespace Life
     {
         scenes.insert(std::make_pair<std::string,std::shared_ptr<Scenes::Scene>>( "Menu", std::make_shared<Scenes::MenuScene>()));
         scenes["Menu"]->init( baseWinSize, &gui, resourceManager );
+        //this->subscribe(&scenes["Menu"]);
     }
 
     void GameWindow::setupTgui()
@@ -86,11 +87,13 @@ namespace Life
                             window.close();
                             break;
                     }
+                    notifyEvent(&event);
                 }
                 if(scenes["Menu"]->isVisible())
                 {
                     gui.handleEvent( event );
                 }
+
             }
 
 
@@ -105,4 +108,20 @@ namespace Life
             window.display();
         }
     }
+
+    void GameWindow::notifyEvent( sf::Event* what, std::shared_ptr<Scenes::Scene> subToSkip )
+    {
+        if( notifyEnabled )
+        {
+            for(auto p = scenes.begin(); p != scenes.end(); p++)
+            {
+                if( p->second != subToSkip )
+                {
+                    p->second->updateEvent( this, what );
+                }
+            }
+        }
+        notifyEnabled = true;
+    }
+
 }

@@ -72,4 +72,9 @@ namespace Scenes
         }
     }
 
+    void MenuScene::updateEvent(void* who, sf::Event* what)
+    {
+
+    }
+
 }

@@ -4,19 +4,23 @@ namespace Life
 {
     Utils::Utils()
     {
+        MainLogger& logger = MainLogger::Instance();
+        std::ostringstream os;
+
         iniFileLoaded = true;
         std::filesystem::path currDir = getExePath();
         currDir  /= "Life.ini";
-        std::cout << "INI file is here: " << currDir << std::endl;
+        os << "INI file is here: " << currDir;
+        logger.Log( os.str() );
         SI_Error rc = ini.LoadFile( currDir.c_str() );
         if ( rc < 0 )
         {
-            std::cout << "Ini file not found.  Creating new file." << std::endl;
+            logger.Log( "Ini file not found.  Creating new file." );
             const std::string initialFile = "[General]\nVersion = 0.2\n";
             rc = ini.LoadData( initialFile );
             if ( rc < 0 )
             {
-                std::cout << "Epic Error!!!  Cannot load initial values!" << std::endl;
+                logger.Log( "Epic Error!!!  Cannot load initial values!" );
                 iniFileLoaded = false;
             }
             else
@@ -34,22 +38,28 @@ namespace Life
     {
         if( iniFileLoaded )
         {
+            MainLogger& logger = MainLogger::Instance();
+            std::ostringstream os;
             std::string path = ".";
             std::string resourcesDirectory;
             struct stat info;
             if( stat( path.c_str(), &info ) != 0 )
             {
-                std::cout << "ERROR!  Cannot access game directory '" << path << "'" << std::endl;
+                os << "ERROR!  Cannot access game directory '" << path << "'";
             }
             else if( !( info.st_mode & S_IFDIR ) )
             {
-                std::cout << "ERROR!  " << path << " is not a directory" << std::endl;
+                os << "ERROR!  " << path << " is not a directory";
             }
             else
             {
                 std::filesystem::path currDir = currentDirectory;
                 currDir  /= "Life.ini";
                 ini.SaveFile( currDir.c_str() );
+            }
+            if( os.tellp() > 0 )
+            {
+                logger.Log( os.str() );
             }
         }
     }
@@ -129,17 +139,21 @@ namespace Life
 
     bool Utils::setCachedDirectory( std::string path, const char* iniTag )
     {
+        MainLogger& logger = MainLogger::Instance();
+        std::ostringstream os;
         std::filesystem::path currDir = currentDirectory;
         currDir  /= path;
         struct stat info;
         if( stat( currDir.c_str(), &info ) != 0 )
         {
-            std::cout << "ERROR!  setCachedDirectory: Cannot access directory '" << currDir << "'" << std::endl;
+            os << "ERROR!  setCachedDirectory: Cannot access directory '" << currDir << "'";
+            logger.Log( os.str() );
             return false;
         }
         else if( !( info.st_mode & S_IFDIR ) )
         {
-            std::cout << "ERROR!  setCachedDirectory: '" << currDir << "' is not a directory" << std::endl;
+            os << "ERROR!  setCachedDirectory: '" << currDir << "' is not a directory";
+            logger.Log( os.str() );
             return false;
         }
         setValueToIni( "File", iniTag, path );
@@ -151,6 +165,7 @@ namespace Life
     {
         if( currentDirectory.empty() )
         {
+            MainLogger& logger = MainLogger::Instance();
             char pBuf[PATH_MAX];
             int bytes = readlink( "/proc/self/exe", pBuf, PATH_MAX );
             if( bytes >= 0 )
@@ -159,7 +174,7 @@ namespace Life
             }
             else
             {
-                std::cout << "EPIC FAIL!!!  Cannot get current directory!" << std::endl;
+                logger.Log("EPIC FAIL!!!  Cannot get current directory!");
             }
             std::filesystem::path p{std::string( pBuf,  bytes > 0  ? bytes : 0 )};
             currentDirectory =  p.parent_path();

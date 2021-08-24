@@ -15,6 +15,7 @@
 					<Add option="-std=c++17" />
 					<Add option="-g" />
 					<Add directory="include/Life" />
+					<Add directory="include" />
 				</Compiler>
 				<ExtraCommands>
 					<Add after="~/scripts/Life_2_Debug_Resources.sh" />
@@ -29,6 +30,7 @@
 				<Compiler>
 					<Add option="-O2" />
 					<Add directory="include/Life" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -40,6 +42,7 @@
 			<Add directory="../SFML-2.5.1/include" />
 			<Add directory="src" />
 			<Add directory="include" />
+			<Add directory="../../lib/spdlog/include" />
 		</Compiler>
 		<Linker>
 			<Add library="tgui" />
@@ -54,11 +57,12 @@
 		<Unit filename="include/Life/game.h" />
 		<Unit filename="include/Life/gamebar.h" />
 		<Unit filename="include/Life/gamewindow.h" />
-		<Unit filename="include/Life/pubsub.h" />
 		<Unit filename="include/Life/utils.h" />
 		<Unit filename="include/Scenes/menuscene.h" />
 		<Unit filename="include/Scenes/scene.h" />
 		<Unit filename="include/SimpleIni.h" />
+		<Unit filename="include/constants.h" />
+		<Unit filename="include/mainlogger.h" />
 		<Unit filename="src/Assets/Colors.cpp" />
 		<Unit filename="src/Assets/resourcemanager.cpp" />
 		<Unit filename="src/ConvertUTF.c">
@@ -67,11 +71,11 @@
 		<Unit filename="src/Life/game.cpp" />
 		<Unit filename="src/Life/gamebar.cpp" />
 		<Unit filename="src/Life/gamewindow.cpp" />
-		<Unit filename="src/Life/pubsub.cpp" />
 		<Unit filename="src/Life/utils.cpp" />
 		<Unit filename="src/Scenes/menuscene.cpp" />
 		<Unit filename="src/Scenes/scene.cpp" />
 		<Unit filename="src/main.cpp" />
+		<Unit filename="src/mainlogger.cpp" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

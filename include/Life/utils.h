@@ -11,7 +11,9 @@
 #include <iostream>
 #include "SimpleIni.h"
 #include "constants.h"
-#include "enginelogger.hpp"
+#include "mainlogger.h"
+#include <sstream>
+
 namespace Life
 {
     class Utils

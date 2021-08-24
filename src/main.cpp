@@ -4,7 +4,7 @@
 #include "Assets/resourcemanager.h"
 #include "Life/gamewindow.h"
 #include "Life/utils.h"
-#include "enginelogger.hpp"
+#include "mainlogger.h"
 
 using namespace std;
 
@@ -19,16 +19,17 @@ sf::Clock timer;
 std::shared_ptr<Life::Utils> utilities{new Life::Utils};
 std::shared_ptr<Assets::ResourceManager> resourceManager{new Assets::ResourceManager};
 
-
 void runGame();
 
 int main()
 {
-    ELogger::InitLog();
+    MainLogger::Instance().Log("Starting engine!!  Vroom!");
     resourceManager->init(utilities);
     resourceManager->setMainFont( "ITCKRIST.TTF" );
 
     runGame();
+
+    MainLogger::Instance().Log("Done.");
     return 0;
 }
 

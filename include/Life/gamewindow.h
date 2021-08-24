@@ -14,7 +14,7 @@ namespace Life
 {
     static constexpr char gameTitle[] = "Life 0.2";
 
-    class GameWindow : public EventPublisher
+    class GameWindow
     {
     public:
         GameWindow( std::shared_ptr<Assets::ResourceManager> resourceManager );
@@ -29,10 +29,11 @@ namespace Life
             return baseWinSize;
         }
         void run();
-        void AddScene(std::shared_ptr<Scenes::Scene> scene);
-
+        void addScene(std::shared_ptr<Scenes::Scene> scene);
+        void notifyEvent( sf::Event* what, std::shared_ptr<Scenes::Scene> subToSkip = 0 );
     public:
         tgui::GuiSFML gui;
+        bool notifyEnabled{true};
 
     protected:
 

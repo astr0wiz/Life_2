@@ -17,6 +17,7 @@ namespace Scenes
         void hide();
         void init( sf::Vector2f windowSize, tgui::GuiSFML* gui, std::shared_ptr<Assets::ResourceManager> resourceManager);
         bool isVisible();
+        void updateEvent( void* who, sf::Event* what = 0 );
     public:
         tgui::Group::Ptr menuGroup;
 
