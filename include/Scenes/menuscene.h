@@ -5,9 +5,25 @@
 #include <TGUI/TGUI.hpp>
 #include <SFML/Graphics.hpp>
 #include "Assets/Colors.h"
+#include <iostream>
 
 namespace Scenes
 {
+    enum class MenuButtons
+    {
+        Continue,
+        Load,
+        Save,
+        Edit,
+        Random,
+        Credits,
+        Quit
+    };
+    enum class RollDirections
+    {
+        Up,
+        Down
+    };
     class MenuScene : public Scene
     {
     public:
@@ -15,7 +31,7 @@ namespace Scenes
         virtual ~MenuScene();
         void show();
         void hide();
-        void init( sf::Vector2f windowSize, tgui::GuiSFML* gui, std::shared_ptr<Assets::ResourceManager> resourceManager);
+        void init( sf::Vector2f windowSize, tgui::GuiSFML* gui, std::shared_ptr<Assets::ResourceManager> resourceManager, std::shared_ptr<Life::Utils> utilities, std::function<void(COMMON::GameActions)> gameAction);
         bool isVisible();
         void updateEvent( void* who, sf::Event* what = 0 );
     public:
@@ -27,10 +43,12 @@ namespace Scenes
         sf::Font menuFont;
         sf::RectangleShape screen;
         sf::Text titleText;
-        //tgui::Panel::Ptr panel;
+        std::map<Scenes::MenuButtons,tgui::Button::Ptr> buttons;
 
     private:
         virtual void draw( sf::RenderTarget& target, sf::RenderStates states ) const;
+        void processButtonClick(MenuButtons selection);
+        void rollButtonSelection(RollDirections direction);
     };
 
 }

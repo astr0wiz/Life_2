@@ -2,13 +2,14 @@
 
 namespace Life
 {
-    GameWindow::GameWindow( std::shared_ptr<Assets::ResourceManager> resourceManager )
+    GameWindow::GameWindow( std::shared_ptr<Assets::ResourceManager> resourceManager, std::shared_ptr<Life::Utils> utilities )
     {
+        //actionFunc = &Life::GameWindow::menuAction;
         setupBaseWindow();
         setupTgui();
         setupGameBar( resourceManager );
         setupBackground();
-        setupScenes( resourceManager );
+        setupScenes( resourceManager, utilities );
     }
 
     GameWindow::~GameWindow()
@@ -50,11 +51,35 @@ namespace Life
         gamebar->updateSizeAndTitle( baseWinSize.x, gameTitle );
     }
 
-    void GameWindow::setupScenes( std::shared_ptr<Assets::ResourceManager> resourceManager )
+    void GameWindow::setupScenes( std::shared_ptr<Assets::ResourceManager> resourceManager, std::shared_ptr<Life::Utils> utils )
     {
-        scenes.insert(std::make_pair<std::string,std::shared_ptr<Scenes::Scene>>( "Menu", std::make_shared<Scenes::MenuScene>()));
-        scenes["Menu"]->init( baseWinSize, &gui, resourceManager );
+        scenes.insert( std::make_pair<std::string, std::shared_ptr<Scenes::Scene>>( "Menu", std::make_shared<Scenes::MenuScene>() ) );
+        scenes["Menu"]->init( baseWinSize, &gui, resourceManager, utils, std::bind(&GameWindow::menuAction, this, std::placeholders::_1) );
+        /*
+        ===========================================================================================================================
+        ===========================================================================================================================
+        Here is the problem:
+
+        I want the MenuScene to call "quits" back to GameWindow if Quit is selected.
+
+        Possible solution:  Don't use MenuScene.  Just create a modal-like function which returns the selection (just like a damn
+        modal window!!!).  Then, the processing for each option is done in GameWindow.
+
+        Great.
+
+        So, it's not a Scene.  WHat is it then?
+        ===========================================================================================================================
+        ===========================================================================================================================
+        */
         //this->subscribe(&scenes["Menu"]);
+    }
+
+    void GameWindow::menuAction( COMMON::GameActions action )
+    {
+        if( action == COMMON::GameActions::Quit )
+        {
+            quitGame();
+        }
     }
 
     void GameWindow::setupTgui()
@@ -62,7 +87,10 @@ namespace Life
         gui.setTarget( window );
     }
 
-
+    void GameWindow::quitGame()
+    {
+        window.close();
+    }
 
     void GameWindow::run()
     {
@@ -84,12 +112,12 @@ namespace Life
                     switch( event.key.code )
                     {
                         case sf::Keyboard::Escape:
-                            window.close();
+                            quitGame();
                             break;
                     }
-                    notifyEvent(&event);
+                    notifyEvent( &event );
                 }
-                if(scenes["Menu"]->isVisible())
+                if( scenes["Menu"]->isVisible() )
                 {
                     gui.handleEvent( event );
                 }
@@ -100,9 +128,9 @@ namespace Life
             window.clear( sf::Color2::Rich_Black );
 
             window.draw( *gamebar );
-            for (const auto& [key,scene]:scenes)
+            for ( const auto& [key, scene] : scenes )
             {
-                window.draw(*scene);
+                window.draw( *scene );
             }
             gui.draw();
             window.display();
@@ -113,7 +141,7 @@ namespace Life
     {
         if( notifyEnabled )
         {
-            for(auto p = scenes.begin(); p != scenes.end(); p++)
+            for( auto p = scenes.begin(); p != scenes.end(); p++ )
             {
                 if( p->second != subToSkip )
                 {

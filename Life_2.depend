@@ -448,38 +448,42 @@
 	<sys/stat.h>
 	"Assets/resourcemanager.h"
 
-1629769616 source:/nixdev/dev/cpp/prj/Life_2/src/Life/gamewindow.cpp
+1631841239 source:/nixdev/dev/cpp/prj/Life_2/src/Life/gamewindow.cpp
 	"Life/gamewindow.h"
 
-1629769225 /nixdev/dev/cpp/prj/Life_2/include/Life/gamewindow.h
+1631807712 /nixdev/dev/cpp/prj/Life_2/include/Life/gamewindow.h
 	<memory>
 	<SFML/Graphics.hpp>
-	"pubsub.h"
 	"gamebar.h"
 	"Assets/resourcemanager.h"
 	"Scenes/menuscene.h"
 	<TGUI/TGUI.hpp>
 	"Life/utils.h"
+	"mainlogger.h"
 
-1629768847 /nixdev/dev/cpp/prj/Life_2/include/Scenes/menuscene.h
+1631841017 /nixdev/dev/cpp/prj/Life_2/include/Scenes/menuscene.h
 	"Scenes/scene.h"
 	<TGUI/TGUI.hpp>
 	<SFML/Graphics.hpp>
 	"Assets/Colors.h"
+	<iostream>
 
-1629768847 /nixdev/dev/cpp/prj/Life_2/include/Scenes/scene.h
+1631841017 /nixdev/dev/cpp/prj/Life_2/include/Scenes/scene.h
 	<memory>
 	<TGUI/TGUI.hpp>
 	<SFML/Graphics.hpp>
 	"Assets/resourcemanager.h"
+	"mainlogger.h"
+	"enums.h"
+	<functional>
 
-1629769010 source:/nixdev/dev/cpp/prj/Life_2/src/Scenes/menuscene.cpp
+1631841385 source:/nixdev/dev/cpp/prj/Life_2/src/Scenes/menuscene.cpp
 	"Scenes/menuscene.h"
 
 1628127160 source:/nixdev/dev/cpp/prj/Life_2/src/Scenes/scene.cpp
 	"Scenes/scene.h"
 
-1629045070 source:/nixdev/dev/cpp/prj/Life_2/src/main.cpp
+1631464795 source:/nixdev/dev/cpp/prj/Life_2/src/main.cpp
 	<iostream>
 	<TGUI/TGUI.hpp>
 	"Assets/Colors.h"
@@ -495,7 +499,7 @@
 	<string>
 	"Life/utils.h"
 
-1629045701 /nixdev/dev/cpp/prj/Life_2/include/Life/utils.h
+1631464140 /nixdev/dev/cpp/prj/Life_2/include/Life/utils.h
 	"limits.h"
 	<unistd.h>
 	<filesystem>
@@ -507,6 +511,7 @@
 	"constants.h"
 	"mainlogger.h"
 	<sstream>
+	<SFML/Window.hpp>
 
 1592713539 /nixdev/dev/cpp/prj/Life_2/include/SimpleIni.h
 	<cstring>
@@ -531,7 +536,7 @@
 	"ConvertUTF.h"
 	<stdio.h>
 
-1629046853 source:/nixdev/dev/cpp/prj/Life_2/src/Life/utils.cpp
+1631464099 source:/nixdev/dev/cpp/prj/Life_2/src/Life/utils.cpp
 	"utils.h"
 
 1628944505 /nixdev/dev/cpp/prj/Life_2/include/constants.h
@@ -894,4 +899,10 @@
 	<iostream>
 	<spdlog/spdlog.h>
 	<spdlog/sinks/basic_file_sink.h>
+
+1631479436 /nixdev/dev/cpp/prj/Life_2/include/enums.h
+
+1631482587 /nixdev/dev/cpp/prj/Life_2/include/typedefs.h
+	"enums.h"
+	"Life/gamewindow.h"
 

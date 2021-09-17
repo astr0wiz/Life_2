@@ -42,7 +42,7 @@ void continueFromMenu()
 
 void runGame()
 {
-    Life::GameWindow gameWindow( resourceManager );
+    Life::GameWindow gameWindow( resourceManager, utilities );
     gameWindow.run();
 /* =====================================================================================
 **    std::vector<sf::VideoMode> vmodes = sf::VideoMode::getFullscreenModes( );

@@ -62,6 +62,7 @@
 		<Unit filename="include/Scenes/scene.h" />
 		<Unit filename="include/SimpleIni.h" />
 		<Unit filename="include/constants.h" />
+		<Unit filename="include/enums.h" />
 		<Unit filename="include/mainlogger.h" />
 		<Unit filename="src/Assets/Colors.cpp" />
 		<Unit filename="src/Assets/resourcemanager.cpp" />

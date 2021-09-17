@@ -13,6 +13,7 @@
 #include "constants.h"
 #include "mainlogger.h"
 #include <sstream>
+#include <SFML/Window.hpp>
 
 namespace Life
 {
@@ -27,6 +28,7 @@ namespace Life
         std::string getResourcePath(std::string resourceName);
         std::string getSaveGameDirectory();
         std::string getSaveGamePath(std::string saveGameName);
+        std::string getKeyNameFromCode(sf::Keyboard::Key key);
 
     private:
         std::string getValueFromIni( std::string section, const char* key );

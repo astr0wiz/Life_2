@@ -16,6 +16,7 @@ Panel.ButtonPanel {
         Renderer {
             BackgroundColor = #555E8D;
             BackgroundColorDown = rgba(150, 150, 150, 0);
+			BackgroundColorFocused = #7096b3;
             BackgroundColorHover = rgba(96, 123, 139, 255);
             BorderColor = rgba(240, 240, 240, 0);
             Borders = (1, 1, 1, 0);
@@ -42,6 +43,7 @@ Panel.ButtonPanel {
         Renderer {
             BackgroundColor = #555E8D;
             BackgroundColorDown = rgba(150, 150, 150, 0);
+			BackgroundColorFocused = #7096b3;
             BackgroundColorHover = rgba(96, 123, 139, 255);
             BorderColor = rgba(240, 240, 240, 0);
             Borders = (1, 1, 1, 0);
@@ -69,6 +71,7 @@ Panel.ButtonPanel {
         Renderer {
             BackgroundColor = #555E8D;
             BackgroundColorDown = rgba(150, 150, 150, 0);
+			BackgroundColorFocused = #7096b3;
             BackgroundColorHover = rgba(96, 123, 139, 255);
             BorderColor = rgba(240, 240, 240, 0);
             Borders = (1, 1, 1, 0);
@@ -95,6 +98,7 @@ Panel.ButtonPanel {
         Renderer {
             BackgroundColor = #555E8D;
             BackgroundColorDown = rgba(150, 150, 150, 0);
+			BackgroundColorFocused = #7096b3;
             BackgroundColorHover = rgba(96, 123, 139, 255);
             BorderColor = rgba(240, 240, 240, 0);
             Borders = (1, 1, 1, 0);
@@ -121,6 +125,7 @@ Panel.ButtonPanel {
         Renderer {
             BackgroundColor = #555E8D;
             BackgroundColorDown = rgba(150, 150, 150, 0);
+			BackgroundColorFocused = #7096b3;
             BackgroundColorHover = rgba(96, 123, 139, 255);
             BorderColor = rgba(240, 240, 240, 0);
             Borders = (1, 1, 1, 0);
@@ -147,6 +152,7 @@ Panel.ButtonPanel {
         Renderer {
             BackgroundColor = #555E8D;
             BackgroundColorDown = rgba(150, 150, 150, 0);
+			BackgroundColorFocused = #7096b3;
             BackgroundColorHover = rgba(96, 123, 139, 255);
             BorderColor = rgba(240, 240, 240, 0);
             Borders = (1, 1, 1, 0);
@@ -173,6 +179,7 @@ Panel.ButtonPanel {
         Renderer {
             BackgroundColor = #555E8D;
             BackgroundColorDown = rgba(150, 150, 150, 0);
+			BackgroundColorFocused = #7096b3;
             BackgroundColorHover = rgba(96, 123, 139, 255);
             BorderColor = rgba(240, 240, 240, 0);
             Borders = (1, 1, 1, 0);
