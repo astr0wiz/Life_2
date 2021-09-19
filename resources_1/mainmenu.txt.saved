@@ -21,9 +21,9 @@ Panel.ButtonPanel {
             BorderColor = rgba(240, 240, 240, 0);
             Borders = (1, 1, 1, 0);
             Font = "fonts/ITCKRIST.TTF";
-            TextColor = #A0A0A0FF;
-            TextColorDown = #FFE820D7;
-            TextColorHover = #FFFFFFC8;
+            TextColor = rgba(255, 255, 255, 180);
+            TextColorDown = rgba(255, 255, 255, 235);
+            TextColorHover = rgba(255, 255, 255, 235);
             Texture = None;
             TextureDisabled = None;
             TextureDown = None;
@@ -47,9 +47,9 @@ Panel.ButtonPanel {
             BorderColor = rgba(240, 240, 240, 0);
             Borders = (1, 1, 1, 0);
             Font = "fonts/ITCKRIST.TTF";
-            TextColor = #A0A0A0FF;
-            TextColorDown = #FFE820D7;
-            TextColorHover = #FFFFFFC8;
+            TextColor = rgba(255, 255, 255, 180);
+            TextColorDown = rgba(255, 255, 255, 235);
+            TextColorHover = rgba(255, 255, 255, 235);
             Texture = None;
             TextureDisabled = None;
             TextureDown = None;
@@ -73,9 +73,9 @@ Panel.ButtonPanel {
             BorderColor = rgba(240, 240, 240, 0);
             Borders = (1, 1, 1, 0);
             Font = "fonts/ITCKRIST.TTF";
-            TextColor = #A0A0A0FF;
-            TextColorDown = #FFE820D7;
-            TextColorHover = #FFFFFFC8;
+            TextColor = rgba(255, 255, 255, 180);
+            TextColorDown = rgba(255, 255, 255, 235);
+            TextColorHover = rgba(255, 255, 255, 235);
             Texture = None;
             TextureDisabled = None;
             TextureDown = None;
@@ -99,9 +99,9 @@ Panel.ButtonPanel {
             BorderColor = rgba(240, 240, 240, 0);
             Borders = (1, 1, 1, 0);
             Font = "fonts/ITCKRIST.TTF";
-            TextColor = #A0A0A0FF;
-            TextColorDown = #FFE820D7;
-            TextColorHover = #FFFFFFC8;
+            TextColor = rgba(255, 255, 255, 180);
+            TextColorDown = rgba(255, 255, 255, 235);
+            TextColorHover = rgba(255, 255, 255, 235);
             Texture = None;
             TextureDisabled = None;
             TextureDown = None;
@@ -125,9 +125,9 @@ Panel.ButtonPanel {
             BorderColor = rgba(240, 240, 240, 0);
             Borders = (1, 1, 1, 0);
             Font = "fonts/ITCKRIST.TTF";
-            TextColor = #A0A0A0FF;
-            TextColorDown = #FFE820D7;
-            TextColorHover = #FFFFFFC8;
+            TextColor = rgba(255, 255, 255, 180);
+            TextColorDown = rgba(255, 255, 255, 235);
+            TextColorHover = rgba(255, 255, 255, 235);
             Texture = None;
             TextureDisabled = None;
             TextureDown = None;
@@ -151,9 +151,9 @@ Panel.ButtonPanel {
             BorderColor = rgba(240, 240, 240, 0);
             Borders = (1, 1, 1, 0);
             Font = "fonts/ITCKRIST.TTF";
-            TextColor = #A0A0A0FF;
-            TextColorDown = #FFE820D7;
-            TextColorHover = #FFFFFFC8;
+            TextColor = rgba(255, 255, 255, 180);
+            TextColorDown = rgba(255, 255, 255, 235);
+            TextColorHover = rgba(255, 255, 255, 235);
             Texture = None;
             TextureDisabled = None;
             TextureDown = None;
@@ -173,13 +173,14 @@ Panel.ButtonPanel {
         Renderer {
             BackgroundColor = transparent;
             BackgroundColorDown = rgba(150, 150, 150, 0);
+            BackgroundColorFocused = #7096B3;
             BackgroundColorHover = None;
             BorderColor = rgba(240, 240, 240, 0);
             Borders = (1, 1, 1, 0);
             Font = "fonts/ITCKRIST.TTF";
-            TextColor = #A0A0A0FF;
-            TextColorDown = #FFE820D7;
-            TextColorHover = #FFFFFFC8;
+            TextColor = rgba(255, 255, 255, 180);
+            TextColorDown = rgba(255, 255, 255, 235);
+            TextColorHover = rgba(255, 255, 255, 235);
             Texture = None;
             TextureDisabled = None;
             TextureDown = None;
@@ -188,15 +189,5 @@ Panel.ButtonPanel {
             TextureFocused = None;
             TextureHover = None;
         }
-    }
-}
-
-Panel.ModalScreen {
-    Size = (380, 560);
-
-    Renderer {
-        BackgroundColor = #50505064;
-        BorderColor = black;
-        TextureBackground = None;
     }
 }

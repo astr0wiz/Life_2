@@ -17,7 +17,10 @@ namespace Scenes
         Edit,
         Random,
         Credits,
-        Quit
+        Quit,
+        ModalYes,
+        ModalNo,
+        ModalOk
     };
     enum class RollDirections
     {
@@ -36,19 +39,30 @@ namespace Scenes
         void updateEvent( void* who, sf::Event* what = 0 );
     public:
         tgui::Group::Ptr menuGroup;
+        tgui::Group::Ptr modalMenuGroup;
 
     private:
-        static constexpr float BB_WIDTH = 400.f;
-        static constexpr float BB_HEIGHT = 600.f;
+        static constexpr float BB_WIDTH = 380.f;
+        static constexpr float BB_HEIGHT = 560.f;
+        static constexpr float MM_WIDTH = 500.f;
+        static constexpr float MM_HEIGHT = 260.f;
         sf::Font menuFont;
         sf::RectangleShape screen;
         sf::Text titleText;
         std::map<Scenes::MenuButtons,tgui::Button::Ptr> buttons;
+        tgui::Panel::Ptr menuModalScreen;
+        tgui::Panel::Ptr modalPanel;
+        tgui::Label::Ptr modalTitle;
+        tgui::Label::Ptr modalMessage;
 
     private:
         virtual void draw( sf::RenderTarget& target, sf::RenderStates states ) const;
         void processButtonClick(MenuButtons selection);
-        void rollButtonSelection(RollDirections direction);
+        bool isLastGameAvailable();
+        void quitAction();
+        void continueAction();
+        void quitGame();
+        void closeModal();
     };
 
 }

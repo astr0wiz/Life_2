@@ -1,0 +1,141 @@
+Panel.ModalPanel {
+    Size = (500, 260);
+
+    Renderer {
+        BackgroundColor = #0357FF;
+        BorderColor = black;
+        Font = "fonts/ITCKRIST.TTF";
+        TextureBackground = "images/border.png" Middle(22, 22, 2, 2) Smooth;
+    }
+
+    Button.YesButton {
+        Position = (90, 180);
+        Size = (115, 50);
+        Text = Yes;
+        TextSize = 25;
+
+        Renderer {
+            BackgroundColor = #F5F5F5;
+            BackgroundColorDisabled = #E6E6E6;
+            BackgroundColorDown = #EBEBEB;
+            BackgroundColorHover = white;
+            BorderColor = #3C3C3C;
+            BorderColorDisabled = #7D7D7D;
+            BorderColorDown = black;
+            BorderColorFocused = #1E1EB4;
+            BorderColorHover = black;
+            Borders = (1, 1, 1, 1);
+            Font = "fonts/ITCKRIST.TTF";
+            TextColor = #3C3C3C;
+            TextColorDisabled = #7D7D7D;
+            TextColorDown = black;
+            TextColorHover = black;
+            Texture = None;
+            TextureDisabled = None;
+            TextureDown = None;
+            TextureDownFocused = None;
+            TextureDownHover = None;
+            TextureFocused = None;
+            TextureHover = None;
+        }
+    }
+
+    Button.NoButton {
+        Position = (285, 180);
+        Size = (115, 50);
+        Text = No;
+        TextSize = 25;
+
+        Renderer {
+            BackgroundColor = #F5F5F5;
+            BackgroundColorDisabled = #E6E6E6;
+            BackgroundColorDown = #EBEBEB;
+            BackgroundColorHover = white;
+            BorderColor = #3C3C3C;
+            BorderColorDisabled = #7D7D7D;
+            BorderColorDown = black;
+            BorderColorFocused = #1E1EB4;
+            BorderColorHover = black;
+            Borders = (1, 1, 1, 1);
+            Font = "fonts/ITCKRIST.TTF";
+            TextColor = #3C3C3C;
+            TextColorDisabled = #7D7D7D;
+            TextColorDown = black;
+            TextColorHover = black;
+            Texture = None;
+            TextureDisabled = None;
+            TextureDown = None;
+            TextureDownFocused = None;
+            TextureDownHover = None;
+            TextureFocused = None;
+            TextureHover = None;
+        }
+    }
+
+    Label.Title {
+        HorizontalAlignment = Center;
+        Position = (60, 22);
+        Size = (382.6, 25);
+        Text = Confirmation;
+        TextSize = 16;
+
+        Renderer {
+            BackgroundColor = transparent;
+            BorderColor = #3C3C3C;
+            Borders = (0, 0, 0, 0);
+            Font = "fonts/ITCKRIST.TTF";
+            TextColor = #FF9E7F;
+            TextureBackground = None;
+        }
+    }
+
+    Label.Message {
+        HorizontalAlignment = Center;
+        Position = (35, 70);
+        ScrollbarPolicy = Never;
+        Size = (427.2, 88);
+        Text = "Are you sure you want to do this thing that will take a long time to finish?";
+        TextSize = 25;
+        VerticalAlignment = Center;
+
+        Renderer {
+            BackgroundColor = transparent;
+            BorderColor = #3C3C3C;
+            Borders = (0, 0, 0, 0);
+            Font = "fonts/ITCKRIST.TTF";
+            TextColor = white;
+            TextureBackground = None;
+        }
+    }
+
+    Button.OkButton {
+        Position = (200, 180);
+        Size = (85, 50);
+        Text = Ok;
+        TextSize = 25;
+
+        Renderer {
+            BackgroundColor = #F5F5F5;
+            BackgroundColorDisabled = #E6E6E6;
+            BackgroundColorDown = #EBEBEB;
+            BackgroundColorHover = white;
+            BorderColor = #3C3C3C;
+            BorderColorDisabled = #7D7D7D;
+            BorderColorDown = black;
+            BorderColorFocused = #1E1EB4;
+            BorderColorHover = black;
+            Borders = (1, 1, 1, 1);
+            TextColor = #3C3C3C;
+            TextColorDisabled = #7D7D7D;
+            TextColorDown = black;
+            TextColorHover = black;
+            Texture = None;
+            TextureDisabled = None;
+            TextureDown = None;
+            TextureDownFocused = None;
+            TextureDownHover = None;
+            TextureFocused = None;
+            TextureHover = None;
+        }
+    }
+}

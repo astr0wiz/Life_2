@@ -17,7 +17,7 @@ namespace Scenes
         return 20.f + ( 10.f * ( ( charsize - 30.f ) / 45.f ) );
     }
 
-    void MenuScene::init( sf::Vector2f windowSize, tgui::GuiSFML* gui, std::shared_ptr<Assets::ResourceManager> resourceManager, std::shared_ptr<Life::Utils> utilities, std::function<void(COMMON::GameActions)> gameAction )
+    void MenuScene::init( sf::Vector2f windowSize, tgui::GuiSFML* gui, std::shared_ptr<Assets::ResourceManager> resourceManager, std::shared_ptr<Life::Utils> utilities, std::function<void( COMMON::GameActions )> gameAction )
     {
         const int TITLE_CHAR_SIZE = 120;
 
@@ -45,7 +45,10 @@ namespace Scenes
         // -------------------------
         tgui::Font::setGlobalFont( tgui::Font( resources->getResourcePath( "fonts/ITCKRIST.TTF" ) ) );
         tgui::Panel::Ptr panel = gui->get<tgui::Panel>( "ButtonPanel" );
+        menuModalScreen = gui->get<tgui::Panel>( "ModalScreen" );
         panel->setPosition( screenCenter.x - ( BB_WIDTH / 2 ), screenCenter.y - ( BB_HEIGHT / 2 ) );
+        menuModalScreen->setVisible( false );
+        menuModalScreen->setPosition( screenCenter.x - ( BB_WIDTH / 2 ), screenCenter.y - ( BB_HEIGHT / 2 ) );
         buttons.insert( {Scenes::MenuButtons::Continue, gui->get<tgui::Button>( "ContinueButton" )} );
         buttons.insert( {Scenes::MenuButtons::Load, gui->get<tgui::Button>( "LoadButton" )} );
         buttons.insert( {Scenes::MenuButtons::Save, gui->get<tgui::Button>( "SaveButton" )} );
@@ -53,6 +56,68 @@ namespace Scenes
         buttons.insert( {Scenes::MenuButtons::Random, gui->get<tgui::Button>( "RandomButton" )} );
         buttons.insert( {Scenes::MenuButtons::Credits, gui->get<tgui::Button>( "CreditsButton" )} );
         buttons.insert( {Scenes::MenuButtons::Quit, gui->get<tgui::Button>( "QuitButton" )} );
+        buttons[Scenes::MenuButtons::Continue]->onPress( &MenuScene::continueAction, this);
+        buttons[Scenes::MenuButtons::Quit]->onPress( &MenuScene::quitAction, this );
+        // -------------------------
+        modalMenuGroup = tgui::Group::create();
+        modalMenuGroup->loadWidgetsFromFile( resources->getResourcePath( "modalYesNo.txt" ) );
+        gui->add( modalMenuGroup );
+        modalPanel = gui->get<tgui::Panel>( "ModalPanel" );
+        modalPanel->setPosition( screenCenter.x - ( MM_WIDTH / 2 ), screenCenter.y - ( MM_HEIGHT / 2 ) );
+        modalPanel->setVisible( false );
+        // -------------------------
+        modalTitle = gui->get<tgui::Label>( "Title" );
+        modalMessage = gui->get<tgui::Label>( "Message" );
+        buttons.insert( {Scenes::MenuButtons::ModalYes, gui->get<tgui::Button>( "YesButton" )} );
+        buttons.insert( {Scenes::MenuButtons::ModalNo, gui->get<tgui::Button>( "NoButton" )} );
+        buttons.insert( {Scenes::MenuButtons::ModalOk, gui->get<tgui::Button>( "OkButton" )} );
+        // -------------------------
+        // -------------------------
+    }
+
+    bool MenuScene::isLastGameAvailable()
+    {
+        return false;
+    }
+
+    void MenuScene::continueAction()
+    {
+        if(!isLastGameAvailable())
+        {
+            menuModalScreen->setVisible( true );
+            modalPanel->setVisible( true );
+            modalTitle->setText( "No Saved Games Found" );
+            modalMessage->setText( "There is no game to continue from.  You might try creating a New game." );
+            buttons[Scenes::MenuButtons::ModalYes]->setVisible( false );
+            buttons[Scenes::MenuButtons::ModalNo]->setVisible( false );
+            buttons[Scenes::MenuButtons::ModalOk]->setVisible( true );
+            buttons[Scenes::MenuButtons::ModalOk]->onPress( &MenuScene::closeModal, this );
+        }
+    }
+
+    void MenuScene::quitAction()
+    {
+        menuModalScreen->setVisible( true );
+        modalPanel->setVisible( true );
+        modalTitle->setText( "Confirm Quit" );
+        modalMessage->setText( "Are you sure you want to quit?  You can still press 'No' and save your game." );
+        buttons[Scenes::MenuButtons::ModalYes]->setVisible( true );
+        buttons[Scenes::MenuButtons::ModalNo]->setVisible( true );
+        buttons[Scenes::MenuButtons::ModalOk]->setVisible( false );
+        buttons[Scenes::MenuButtons::ModalYes]->onPress( &MenuScene::quitGame, this );
+        buttons[Scenes::MenuButtons::ModalNo]->onPress( &MenuScene::closeModal, this );
+    }
+
+    void MenuScene::closeModal()
+    {
+        menuModalScreen->setVisible( false );
+        modalPanel->setVisible( false );
+    }
+
+    void MenuScene::quitGame()
+    {
+        closeModal();
+        gameActionFunc( COMMON::GameActions::Quit );
     }
 
     void MenuScene::show()
@@ -78,6 +143,7 @@ namespace Scenes
         {
             target.draw( screen, states );
             target.draw( titleText );
+
         }
     }
 
@@ -103,40 +169,63 @@ namespace Scenes
                 os << "TEXTENTERED";
                 break;
             case sf::Event::EventType::KeyPressed:
-                switch( what->key.code )
+                os << "KEYPRESSED = ";
+                if( modalPanel->isVisible() )
                 {
-                    case sf::Keyboard::C:
-                        buttons[MenuButtons::Continue]->setFocused( true );
-                        break;
-                    case sf::Keyboard::L:
-                        buttons[MenuButtons::Load]->setFocused( true );
-                        break;
-                    case sf::Keyboard::S:
-                        buttons[MenuButtons::Save]->setFocused( true );
-                        break;
-                    case sf::Keyboard::E:
-                        buttons[MenuButtons::Edit]->setFocused( true );
-                        break;
-                    case sf::Keyboard::R:
-                        buttons[MenuButtons::Random]->setFocused( true );
-                        break;
-                    case sf::Keyboard::D:
-                        buttons[MenuButtons::Credits]->setFocused( true );
-                        break;
-                    case sf::Keyboard::Q:
-                        buttons[MenuButtons::Quit]->setFocused( true );
-                        gameActionFunc(COMMON::GameActions::Quit);
-                        break;
-                    case sf::Keyboard::Down:
-                        rollButtonSelection(RollDirections::Down);
-                        break;
-                    case sf::Keyboard::Up:
-                        rollButtonSelection(RollDirections::Up);
-                        break;
-                    case sf::Keyboard::Enter:
-                        break;
+                    os << "[Modal] ";
+                    if( buttons[MenuButtons::ModalOk]->isVisible() )
+                    {
+                        if( what->key.code == sf::Keyboard::O || what->key.code == sf::Keyboard::Enter )
+                        {
+                            closeModal();
+                        }
+                    }
+                    else
+                    {
+                        switch( what->key.code )
+                        {
+                            case sf::Keyboard::Y:
+                                quitGame();
+                                break;
+                            case sf::Keyboard::N:
+                                closeModal();
+                                break;
+                        }
+                    }
                 }
-                os << "KEYPRESSED = " << utils->getKeyNameFromCode( what->key.code );
+                else
+                {
+                    os << "[-menu-]";
+                    switch( what->key.code )
+                    {
+                        case sf::Keyboard::C:
+                            buttons[MenuButtons::Continue]->setFocused( true );
+                            continueAction();
+                            break;
+                        case sf::Keyboard::L:
+                            buttons[MenuButtons::Load]->setFocused( true );
+                            break;
+                        case sf::Keyboard::S:
+                            buttons[MenuButtons::Save]->setFocused( true );
+                            break;
+                        case sf::Keyboard::E:
+                            buttons[MenuButtons::Edit]->setFocused( true );
+                            break;
+                        case sf::Keyboard::R:
+                            buttons[MenuButtons::Random]->setFocused( true );
+                            break;
+                        case sf::Keyboard::D:
+                            buttons[MenuButtons::Credits]->setFocused( true );
+                            break;
+                        case sf::Keyboard::Q:
+                            buttons[MenuButtons::Quit]->setFocused( true );
+                            quitAction();
+                            break;
+                        case sf::Keyboard::Enter:
+                            break;
+                    }
+                }
+                os << utils->getKeyNameFromCode( what->key.code );
                 break;
             case sf::Event::EventType::KeyReleased:
                 os << "KEYRELEASED";
@@ -199,84 +288,11 @@ namespace Scenes
     void MenuScene::processButtonClick( MenuButtons selection )
     {
         buttons[selection]->setFocused( true );
-        switch(selection)
+        switch( selection )
         {
             case MenuButtons::Quit:
                 // call gameActionFunc
                 break;
-        }
-    }
-
-    void MenuScene::rollButtonSelection( RollDirections direction )
-    {
-        for( auto const& [btnType, btn] : buttons )
-        {
-            if( btn->isFocused() )
-            {
-                if( direction == RollDirections::Down )
-                {
-                    switch( btnType )
-                    {
-                        case MenuButtons::Continue:
-                            buttons[MenuButtons::Load]->setFocused( true );
-                            break;
-                        case MenuButtons::Load:
-                            buttons[MenuButtons::Save]->setFocused( true );
-                            break;
-                        case MenuButtons::Save:
-                            buttons[MenuButtons::Edit]->setFocused( true );
-                            break;
-                        case MenuButtons::Edit:
-                            buttons[MenuButtons::Random]->setFocused( true );
-                            break;
-                        case MenuButtons::Random:
-                            buttons[MenuButtons::Credits]->setFocused( true );
-                            break;
-                        case MenuButtons::Credits:
-                            buttons[MenuButtons::Quit]->setFocused( true );
-                            break;
-                        case MenuButtons::Quit:
-                            buttons[MenuButtons::Continue]->setFocused( true );
-                            break;
-                    }
-                }
-                else
-                {
-                    switch( btnType )
-                    {
-                        case MenuButtons::Continue:
-                            buttons[MenuButtons::Quit]->setFocused( true );
-                            break;
-                        case MenuButtons::Load:
-                            buttons[MenuButtons::Continue]->setFocused( true );
-                            break;
-                        case MenuButtons::Save:
-                            buttons[MenuButtons::Load]->setFocused( true );
-                            break;
-                        case MenuButtons::Edit:
-                            buttons[MenuButtons::Save]->setFocused( true );
-                            break;
-                        case MenuButtons::Random:
-                            buttons[MenuButtons::Edit]->setFocused( true );
-                            break;
-                        case MenuButtons::Credits:
-                            buttons[MenuButtons::Random]->setFocused( true );
-                            break;
-                        case MenuButtons::Quit:
-                            buttons[MenuButtons::Credits]->setFocused( true );
-                            break;
-                    }
-                }
-                return;
-            }
-        }
-        if( direction == RollDirections::Down )
-        {
-            buttons[MenuButtons::Continue]->setFocused( true );
-        }
-        else
-        {
-            buttons[MenuButtons::Quit]->setFocused( true );
         }
     }
 
