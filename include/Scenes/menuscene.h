@@ -12,10 +12,9 @@ namespace Scenes
     enum class MenuButtons
     {
         Continue,
+        New,
         Load,
         Save,
-        Edit,
-        Random,
         Credits,
         Quit,
         ModalYes,
@@ -59,8 +58,14 @@ namespace Scenes
         virtual void draw( sf::RenderTarget& target, sf::RenderStates states ) const;
         void processButtonClick(MenuButtons selection);
         bool isLastGameAvailable();
-        void quitAction();
+        // -------- Menu Actions ----------
         void continueAction();
+        void newAction();
+        void loadAction();
+        void saveAction();
+        void creditsAction();
+        void quitAction();
+        // ---------------------------------
         void quitGame();
         void closeModal();
     };

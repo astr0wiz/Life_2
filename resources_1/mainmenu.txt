@@ -34,8 +34,34 @@ Panel.ButtonPanel {
         }
     }
 
+    Button.NewButton {
+        Position = (20, 110);
+        Size = (340, 60);
+        Text = New;
+        TextSize = 45;
+
+        Renderer {
+            BackgroundColor = transparent;
+            BackgroundColorDown = rgba(150, 150, 150, 0);
+            BackgroundColorHover = None;
+            BorderColor = rgba(240, 240, 240, 0);
+            Borders = (1, 1, 1, 0);
+            Font = "fonts/ITCKRIST.TTF";
+            TextColor = #A0A0A0FF;
+            TextColorDown = #FFE820D7;
+            TextColorHover = #FFFFFFC8;
+            Texture = None;
+            TextureDisabled = None;
+            TextureDown = None;
+            TextureDownFocused = None;
+            TextureDownHover = None;
+            TextureFocused = None;
+            TextureHover = None;
+        }
+    }
+
     Button.LoadButton {
-        Position = (20, 90);
+        Position = (20, 190);
         Size = (340, 60);
         Text = Load;
         TextSize = 45;
@@ -61,61 +87,9 @@ Panel.ButtonPanel {
     }
 
     Button.SaveButton {
-        Position = (20, 160);
+        Position = (20, 280);
         Size = (340, 60);
         Text = Save;
-        TextSize = 45;
-
-        Renderer {
-            BackgroundColor = transparent;
-            BackgroundColorDown = rgba(150, 150, 150, 0);
-            BackgroundColorHover = None;
-            BorderColor = rgba(240, 240, 240, 0);
-            Borders = (1, 1, 1, 0);
-            Font = "fonts/ITCKRIST.TTF";
-            TextColor = #A0A0A0FF;
-            TextColorDown = #FFE820D7;
-            TextColorHover = #FFFFFFC8;
-            Texture = None;
-            TextureDisabled = None;
-            TextureDown = None;
-            TextureDownFocused = None;
-            TextureDownHover = None;
-            TextureFocused = None;
-            TextureHover = None;
-        }
-    }
-
-    Button.EditButton {
-        Position = (20, 230);
-        Size = (340, 60);
-        Text = Edit;
-        TextSize = 45;
-
-        Renderer {
-            BackgroundColor = transparent;
-            BackgroundColorDown = rgba(150, 150, 150, 0);
-            BackgroundColorHover = None;
-            BorderColor = rgba(240, 240, 240, 0);
-            Borders = (1, 1, 1, 0);
-            Font = "fonts/ITCKRIST.TTF";
-            TextColor = #A0A0A0FF;
-            TextColorDown = #FFE820D7;
-            TextColorHover = #FFFFFFC8;
-            Texture = None;
-            TextureDisabled = None;
-            TextureDown = None;
-            TextureDownFocused = None;
-            TextureDownHover = None;
-            TextureFocused = None;
-            TextureHover = None;
-        }
-    }
-
-    Button.RandomButton {
-        Position = (20, 300);
-        Size = (340, 60);
-        Text = Random;
         TextSize = 45;
 
         Renderer {

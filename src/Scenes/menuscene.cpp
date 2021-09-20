@@ -50,13 +50,16 @@ namespace Scenes
         menuModalScreen->setVisible( false );
         menuModalScreen->setPosition( screenCenter.x - ( BB_WIDTH / 2 ), screenCenter.y - ( BB_HEIGHT / 2 ) );
         buttons.insert( {Scenes::MenuButtons::Continue, gui->get<tgui::Button>( "ContinueButton" )} );
+        buttons.insert( {Scenes::MenuButtons::New, gui->get<tgui::Button>( "NewButton" )} );
         buttons.insert( {Scenes::MenuButtons::Load, gui->get<tgui::Button>( "LoadButton" )} );
         buttons.insert( {Scenes::MenuButtons::Save, gui->get<tgui::Button>( "SaveButton" )} );
-        buttons.insert( {Scenes::MenuButtons::Edit, gui->get<tgui::Button>( "EditButton" )} );
-        buttons.insert( {Scenes::MenuButtons::Random, gui->get<tgui::Button>( "RandomButton" )} );
         buttons.insert( {Scenes::MenuButtons::Credits, gui->get<tgui::Button>( "CreditsButton" )} );
         buttons.insert( {Scenes::MenuButtons::Quit, gui->get<tgui::Button>( "QuitButton" )} );
-        buttons[Scenes::MenuButtons::Continue]->onPress( &MenuScene::continueAction, this);
+        buttons[Scenes::MenuButtons::Continue]->onPress( &MenuScene::continueAction, this );
+        buttons[Scenes::MenuButtons::New]->onPress( &MenuScene::newAction, this );
+        buttons[Scenes::MenuButtons::Load]->onPress( &MenuScene::loadAction, this );
+        buttons[Scenes::MenuButtons::Save]->onPress( &MenuScene::saveAction, this );
+        buttons[Scenes::MenuButtons::Credits]->onPress( &MenuScene::creditsAction, this );
         buttons[Scenes::MenuButtons::Quit]->onPress( &MenuScene::quitAction, this );
         // -------------------------
         modalMenuGroup = tgui::Group::create();
@@ -82,7 +85,7 @@ namespace Scenes
 
     void MenuScene::continueAction()
     {
-        if(!isLastGameAvailable())
+        if( !isLastGameAvailable() )
         {
             menuModalScreen->setVisible( true );
             modalPanel->setVisible( true );
@@ -93,6 +96,26 @@ namespace Scenes
             buttons[Scenes::MenuButtons::ModalOk]->setVisible( true );
             buttons[Scenes::MenuButtons::ModalOk]->onPress( &MenuScene::closeModal, this );
         }
+    }
+
+    void MenuScene::newAction()
+    {
+        // ------------------------
+    }
+
+    void MenuScene::loadAction()
+    {
+        // ------------------------
+    }
+
+    void MenuScene::saveAction()
+    {
+        // ------------------------
+    }
+
+    void MenuScene::creditsAction()
+    {
+        // ------------------------
     }
 
     void MenuScene::quitAction()
@@ -175,7 +198,7 @@ namespace Scenes
                     os << "[Modal] ";
                     if( buttons[MenuButtons::ModalOk]->isVisible() )
                     {
-                        if( what->key.code == sf::Keyboard::O || what->key.code == sf::Keyboard::Enter )
+                        if( what->key.code == sf::Keyboard::O )
                         {
                             closeModal();
                         }
@@ -202,17 +225,14 @@ namespace Scenes
                             buttons[MenuButtons::Continue]->setFocused( true );
                             continueAction();
                             break;
+                        case sf::Keyboard::N:
+                            buttons[MenuButtons::New]->setFocused( true );
+                            break;
                         case sf::Keyboard::L:
                             buttons[MenuButtons::Load]->setFocused( true );
                             break;
                         case sf::Keyboard::S:
                             buttons[MenuButtons::Save]->setFocused( true );
-                            break;
-                        case sf::Keyboard::E:
-                            buttons[MenuButtons::Edit]->setFocused( true );
-                            break;
-                        case sf::Keyboard::R:
-                            buttons[MenuButtons::Random]->setFocused( true );
                             break;
                         case sf::Keyboard::D:
                             buttons[MenuButtons::Credits]->setFocused( true );
