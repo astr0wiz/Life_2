@@ -2,14 +2,21 @@
 
 namespace Life
 {
-    Game::Game(Utils utilities)
+    Game::Game()
     {
-        saveFileName= utilities.getNextSaveFileName("LifeSaveGame");
+//        saveFileName= utilities.getNextSaveFileName("LifeSaveGame");
+//        description = "New Game";
+//        mapDimensions = dimensions;
     }
 
     Game::~Game()
     {
         //dtor
+    }
+
+    void Game::setDimensions(sf::Vector2u dimensions)
+    {
+        mapDimensions = dimensions;
     }
 
 }

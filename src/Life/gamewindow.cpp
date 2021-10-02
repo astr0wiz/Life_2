@@ -54,31 +54,29 @@ namespace Life
     void GameWindow::setupScenes( std::shared_ptr<Assets::ResourceManager> resourceManager, std::shared_ptr<Life::Utils> utils )
     {
         scenes.insert( std::make_pair<std::string, std::shared_ptr<Scenes::Scene>>( "Menu", std::make_shared<Scenes::MenuScene>() ) );
-        scenes["Menu"]->init( baseWinSize, &gui, resourceManager, utils, std::bind(&GameWindow::menuAction, this, std::placeholders::_1) );
-        /*
-        ===========================================================================================================================
-        ===========================================================================================================================
-        Here is the problem:
-
-        I want the MenuScene to call "quits" back to GameWindow if Quit is selected.
-
-        Possible solution:  Don't use MenuScene.  Just create a modal-like function which returns the selection (just like a damn
-        modal window!!!).  Then, the processing for each option is done in GameWindow.
-
-        Great.
-
-        So, it's not a Scene.  WHat is it then?
-        ===========================================================================================================================
-        ===========================================================================================================================
-        */
-        //this->subscribe(&scenes["Menu"]);
+        scenes["Menu"]->init( baseWinSize, &gui, resourceManager, utils, std::bind(&GameWindow::menuAction, this, std::placeholders::_1, std::placeholders::_2) );
     }
 
-    void GameWindow::menuAction( COMMON::GameActions action )
+    void GameWindow::menuAction( COMMON::GameActions action, GameInfo gameInfo )
     {
         if( action == COMMON::GameActions::Quit )
         {
             quitGame();
+        }
+        if( action == COMMON::GameActions::New )
+        {
+            std::ostringstream os;
+            os << "*** NEW GAME ***   dimensions:" << gameInfo.getDimensions().x << "," << gameInfo.getDimensions().y;
+            scenes["Menu"]->hide();
+            MainLogger::Instance().Log(os.str());
+            /*
+
+            TODO
+
+            Create a map, show it.
+            Allow editing, zooming, changing animation speed...
+
+            */
         }
     }
 

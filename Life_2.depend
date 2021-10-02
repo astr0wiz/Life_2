@@ -448,10 +448,10 @@
 	<sys/stat.h>
 	"Assets/resourcemanager.h"
 
-1631841239 source:/nixdev/dev/cpp/prj/Life_2/src/Life/gamewindow.cpp
+1632671980 source:/nixdev/dev/cpp/prj/Life_2/src/Life/gamewindow.cpp
 	"Life/gamewindow.h"
 
-1631807712 /nixdev/dev/cpp/prj/Life_2/include/Life/gamewindow.h
+1632669963 /nixdev/dev/cpp/prj/Life_2/include/Life/gamewindow.h
 	<memory>
 	<SFML/Graphics.hpp>
 	"gamebar.h"
@@ -459,25 +459,29 @@
 	"Scenes/menuscene.h"
 	<TGUI/TGUI.hpp>
 	"Life/utils.h"
+	"Life/game.h"
+	"Life/gameinfo.h"
 	"mainlogger.h"
 
-1632105417 /nixdev/dev/cpp/prj/Life_2/include/Scenes/menuscene.h
+1632670193 /nixdev/dev/cpp/prj/Life_2/include/Scenes/menuscene.h
 	"Scenes/scene.h"
 	<TGUI/TGUI.hpp>
 	<SFML/Graphics.hpp>
 	"Assets/Colors.h"
+	"Life/gameinfo.h"
 	<iostream>
 
-1631841017 /nixdev/dev/cpp/prj/Life_2/include/Scenes/scene.h
+1632670421 /nixdev/dev/cpp/prj/Life_2/include/Scenes/scene.h
 	<memory>
 	<TGUI/TGUI.hpp>
 	<SFML/Graphics.hpp>
 	"Assets/resourcemanager.h"
+	"Life/gameinfo.h"
 	"mainlogger.h"
 	"enums.h"
 	<functional>
 
-1632104905 source:/nixdev/dev/cpp/prj/Life_2/src/Scenes/menuscene.cpp
+1632671980 source:/nixdev/dev/cpp/prj/Life_2/src/Scenes/menuscene.cpp
 	"Scenes/menuscene.h"
 
 1628127160 source:/nixdev/dev/cpp/prj/Life_2/src/Scenes/scene.cpp
@@ -492,14 +496,15 @@
 	"Life/utils.h"
 	"mainlogger.h"
 
-1628559439 source:/nixdev/dev/cpp/prj/Life_2/src/Life/game.cpp
+1632670297 source:/nixdev/dev/cpp/prj/Life_2/src/Life/game.cpp
 	"game.h"
 
-1628559439 /nixdev/dev/cpp/prj/Life_2/include/Life/game.h
+1632670297 /nixdev/dev/cpp/prj/Life_2/include/Life/game.h
 	<string>
 	"Life/utils.h"
+	<SFML/Window.hpp>
 
-1631464140 /nixdev/dev/cpp/prj/Life_2/include/Life/utils.h
+1632670602 /nixdev/dev/cpp/prj/Life_2/include/Life/utils.h
 	"limits.h"
 	<unistd.h>
 	<filesystem>
@@ -536,7 +541,7 @@
 	"ConvertUTF.h"
 	<stdio.h>
 
-1631464099 source:/nixdev/dev/cpp/prj/Life_2/src/Life/utils.cpp
+1632585248 source:/nixdev/dev/cpp/prj/Life_2/src/Life/utils.cpp
 	"utils.h"
 
 1628944505 /nixdev/dev/cpp/prj/Life_2/include/constants.h
@@ -900,9 +905,16 @@
 	<spdlog/spdlog.h>
 	<spdlog/sinks/basic_file_sink.h>
 
-1631479436 /nixdev/dev/cpp/prj/Life_2/include/enums.h
+1632584629 /nixdev/dev/cpp/prj/Life_2/include/enums.h
 
 1631482587 /nixdev/dev/cpp/prj/Life_2/include/typedefs.h
 	"enums.h"
 	"Life/gamewindow.h"
+
+1632669305 /nixdev/dev/cpp/prj/Life_2/include/Life/gameinfo.h
+	<string>
+	<SFML/Window.hpp>
+
+1632669305 source:/nixdev/dev/cpp/prj/Life_2/src/Life/gameinfo.cpp
+	"gameinfo.h"
 

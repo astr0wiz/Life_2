@@ -1,0 +1,223 @@
+Panel.MapChoicePanel {
+    Size = (500, 480);
+
+    Renderer {
+        BackgroundColor = #0357FF;
+        BorderColor = black;
+        Font = "fonts/ITCKRIST.TTF";
+        TextureBackground = "images/border.png" Middle(22, 22, 2, 2) Smooth;
+    }
+
+    Button.MapChoiceGoButton {
+        Position = (90, 400);
+        Size = (135, 50);
+        Text = Ok;
+        TextSize = 25;
+
+        Renderer {
+            BackgroundColor = #F5F5F5;
+            BackgroundColorDisabled = #E6E6E6;
+            BackgroundColorDown = #EBEBEB;
+            BackgroundColorHover = white;
+            BorderColor = #3C3C3C;
+            BorderColorDisabled = #7D7D7D;
+            BorderColorDown = black;
+            BorderColorFocused = #1E1EB4;
+            BorderColorHover = black;
+            Borders = (0, 0, 0, 0);
+            Font = "fonts/ITCKRIST.TTF";
+            TextColor = #C0C0C0;
+            TextColorDisabled = #7D7D7D;
+            TextColorDown = white;
+            TextColorHover = #E0E0E0;
+            Texture = "images/button-border.png" Middle(15, 15, 2, 2) Smooth;
+            TextureDisabled = None;
+            TextureDown = None;
+            TextureDownFocused = None;
+            TextureDownHover = None;
+            TextureFocused = None;
+            TextureHover = None;
+        }
+    }
+
+    Button.MapChoiceCancelButton {
+        Position = (285, 400);
+        Size = (135, 50);
+        Text = Cancel;
+        TextSize = 25;
+
+        Renderer {
+            BackgroundColor = #F5F5F5;
+            BackgroundColorDisabled = #E6E6E6;
+            BackgroundColorDown = #EBEBEB;
+            BackgroundColorHover = white;
+            BorderColor = #3C3C3C;
+            BorderColorDisabled = #7D7D7D;
+            BorderColorDown = black;
+            BorderColorFocused = #1E1EB4;
+            BorderColorHover = black;
+            Borders = (0, 0, 0, 0);
+            Font = "fonts/ITCKRIST.TTF";
+            TextColor = #C0C0C0;
+            TextColorDisabled = #7D7D7D;
+            TextColorDown = white;
+            TextColorHover = #E0E0E0;
+            Texture = "images/button-border.png" Middle(15, 15, 2, 2) Smooth;
+            TextureDisabled = None;
+            TextureDown = None;
+            TextureDownFocused = None;
+            TextureDownHover = None;
+            TextureFocused = None;
+            TextureHover = None;
+        }
+    }
+
+    Label.MapChoiceTitle {
+        HorizontalAlignment = Center;
+        Position = (60, 22);
+        Size = (382.6, 25);
+        Text = "New Game";
+        TextSize = 16;
+
+        Renderer {
+            BackgroundColor = transparent;
+            BorderColor = #3C3C3C;
+            Borders = (0, 0, 0, 0);
+            Font = "fonts/ITCKRIST.TTF";
+            TextColor = #FF9E7F;
+            TextureBackground = None;
+        }
+    }
+
+    Label.MapChoiceMessage {
+        HorizontalAlignment = Center;
+        Position = (35, 70);
+        ScrollbarPolicy = Never;
+        Size = (427.2, 48);
+        Text = "Choose a map size";
+        TextSize = 30;
+        VerticalAlignment = Center;
+
+        Renderer {
+            BackgroundColor = transparent;
+            BorderColor = #3C3C3C;
+            Borders = (0, 0, 0, 0);
+            Font = "fonts/ITCKRIST.TTF";
+            TextColor = white;
+            TextureBackground = None;
+        }
+    }
+
+    Group.MapChoiceGroup {
+        Position = (100, 140);
+        Size = (300, 210);
+
+        Renderer {
+        }
+
+        RadioButton.MapChoiceSizeSmall {
+            Position = (40, 30);
+            Size = (18, 18);
+            Text = "Small: 50x50";
+            TextSize = 25;
+            UserData = 50;
+
+            Renderer {
+                BackgroundColor = #F5F5F5;
+                BackgroundColorDisabled = #E6E6E6;
+                BackgroundColorHover = white;
+                BorderColor = #3C3C3C;
+                BorderColorDisabled = #7D7D7D;
+                BorderColorFocused = #1E1EB4;
+                BorderColorHover = black;
+                Borders = (1, 1, 1, 1);
+                CheckColor = #3C3C3C;
+                CheckColorDisabled = #7D7D7D;
+                CheckColorHover = black;
+                TextColor = #A0A0A0;
+                TextColorChecked = #FFE820D7;
+                TextColorDisabled = #7D7D7D;
+                TextColorHover = #FFFFFFC8;
+                TextDistanceRatio = 0.2;
+                TextureChecked = None;
+                TextureCheckedDisabled = None;
+                TextureCheckedFocused = None;
+                TextureCheckedHover = None;
+                TextureUnchecked = None;
+                TextureUncheckedDisabled = None;
+                TextureUncheckedFocused = None;
+                TextureUncheckedHover = None;
+            }
+        }
+
+        RadioButton.MapChoiceSizeMedium {
+            Position = (40, 90);
+            Size = (18, 18);
+            Text = "Medium: 200x200";
+            TextSize = 25;
+            UserData = 200;
+
+            Renderer {
+                BackgroundColor = #F5F5F5;
+                BackgroundColorDisabled = #E6E6E6;
+                BackgroundColorHover = white;
+                BorderColor = #3C3C3C;
+                BorderColorDisabled = #7D7D7D;
+                BorderColorFocused = #1E1EB4;
+                BorderColorHover = black;
+                Borders = (1, 1, 1, 1);
+                CheckColor = #3C3C3C;
+                CheckColorDisabled = #7D7D7D;
+                CheckColorHover = black;
+                TextColor = #A0A0A0;
+                TextColorChecked = #FFE820D7;
+                TextColorDisabled = #7D7D7D;
+                TextColorHover = #FFFFFFC8;
+                TextDistanceRatio = 0.2;
+                TextureChecked = None;
+                TextureCheckedDisabled = None;
+                TextureCheckedFocused = None;
+                TextureCheckedHover = None;
+                TextureUnchecked = None;
+                TextureUncheckedDisabled = None;
+                TextureUncheckedFocused = None;
+                TextureUncheckedHover = None;
+            }
+        }
+
+        RadioButton.MapChoiceSizeLarge {
+            Position = (40, 150);
+            Size = (18, 18);
+            Text = "Large: 1000x1000";
+            TextSize = 25;
+            UserData = 1000;
+
+            Renderer {
+                BackgroundColor = #F5F5F5;
+                BackgroundColorDisabled = #E6E6E6;
+                BackgroundColorHover = white;
+                BorderColor = #3C3C3C;
+                BorderColorDisabled = #7D7D7D;
+                BorderColorFocused = #1E1EB4;
+                BorderColorHover = black;
+                Borders = (1, 1, 1, 1);
+                CheckColor = #3C3C3C;
+                CheckColorDisabled = #7D7D7D;
+                CheckColorHover = black;
+                TextColor = #A0A0A0;
+                TextColorChecked = #FFE820D7;
+                TextColorDisabled = #7D7D7D;
+                TextColorHover = #FFFFFFC8;
+                TextDistanceRatio = 0.2;
+                TextureChecked = None;
+                TextureCheckedDisabled = None;
+                TextureCheckedFocused = None;
+                TextureCheckedHover = None;
+                TextureUnchecked = None;
+                TextureUncheckedDisabled = None;
+                TextureUncheckedFocused = None;
+                TextureUncheckedHover = None;
+            }
+        }
+    }
+}

@@ -112,10 +112,10 @@ Panel.ButtonPanel {
         }
     }
 
-    Button.CreditsButton {
+    Button.OptionsButton {
         Position = (20, 390);
         Size = (340, 60);
-        Text = Credits;
+        Text = Options;
         TextSize = 45;
 
         Renderer {

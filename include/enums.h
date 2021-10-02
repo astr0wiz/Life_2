@@ -5,7 +5,8 @@ namespace COMMON
 {
     enum class GameActions
     {
-        Quit
+        Quit,
+        New
     };
 }
 

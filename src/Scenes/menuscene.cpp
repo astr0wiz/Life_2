@@ -17,10 +17,13 @@ namespace Scenes
         return 20.f + ( 10.f * ( ( charsize - 30.f ) / 45.f ) );
     }
 
-    void MenuScene::init( sf::Vector2f windowSize, tgui::GuiSFML* gui, std::shared_ptr<Assets::ResourceManager> resourceManager, std::shared_ptr<Life::Utils> utilities, std::function<void( COMMON::GameActions )> gameAction )
+    void MenuScene::init( sf::Vector2f windowSize, tgui::GuiSFML* gui, std::shared_ptr<Assets::ResourceManager> resourceManager, std::shared_ptr<Life::Utils> utilities, std::function<void( COMMON::GameActions, Life::GameInfo )> gameAction )
     {
         const int TITLE_CHAR_SIZE = 120;
 
+        gameInfo.setName("");
+        gameInfo.setFilename("");
+        gameInfo.setDimensions({0,0});
         resources = resourceManager;
         utils = utilities;
         gameActionFunc = gameAction;
@@ -39,6 +42,13 @@ namespace Scenes
         screen.setFillColor( sf::Color( 80, 80, 80, 100 ) );
         screen.setPosition( sf::Vector2f( 0.f, 0.f ) );
         // -------------------------
+        initMenu( gui, screenCenter );
+        initGenericModal( gui, screenCenter );
+        initNewMenuModal( gui, screenCenter );
+    }
+
+    void MenuScene::initMenu( tgui::GuiSFML* gui, sf::Vector2f screenCenter )
+    {
         menuGroup = tgui::Group::create();
         menuGroup->loadWidgetsFromFile( resources->getResourcePath( "mainmenu.txt" ) );
         gui->add( menuGroup );
@@ -53,30 +63,46 @@ namespace Scenes
         buttons.insert( {Scenes::MenuButtons::New, gui->get<tgui::Button>( "NewButton" )} );
         buttons.insert( {Scenes::MenuButtons::Load, gui->get<tgui::Button>( "LoadButton" )} );
         buttons.insert( {Scenes::MenuButtons::Save, gui->get<tgui::Button>( "SaveButton" )} );
-        buttons.insert( {Scenes::MenuButtons::Credits, gui->get<tgui::Button>( "CreditsButton" )} );
+        buttons.insert( {Scenes::MenuButtons::Options, gui->get<tgui::Button>( "OptionsButton" )} );
         buttons.insert( {Scenes::MenuButtons::Quit, gui->get<tgui::Button>( "QuitButton" )} );
         buttons[Scenes::MenuButtons::Continue]->onPress( &MenuScene::continueAction, this );
         buttons[Scenes::MenuButtons::New]->onPress( &MenuScene::newAction, this );
         buttons[Scenes::MenuButtons::Load]->onPress( &MenuScene::loadAction, this );
         buttons[Scenes::MenuButtons::Save]->onPress( &MenuScene::saveAction, this );
-        buttons[Scenes::MenuButtons::Credits]->onPress( &MenuScene::creditsAction, this );
+        buttons[Scenes::MenuButtons::Options]->onPress( &MenuScene::optionsAction, this );
         buttons[Scenes::MenuButtons::Quit]->onPress( &MenuScene::quitAction, this );
-        // -------------------------
+    }
+
+    void MenuScene::initGenericModal( tgui::GuiSFML* gui, sf::Vector2f screenCenter )
+    {
         modalMenuGroup = tgui::Group::create();
         modalMenuGroup->loadWidgetsFromFile( resources->getResourcePath( "modalYesNo.txt" ) );
         gui->add( modalMenuGroup );
         modalPanel = gui->get<tgui::Panel>( "ModalPanel" );
         modalPanel->setPosition( screenCenter.x - ( MM_WIDTH / 2 ), screenCenter.y - ( MM_HEIGHT / 2 ) );
         modalPanel->setVisible( false );
-        // -------------------------
         modalTitle = gui->get<tgui::Label>( "Title" );
         modalMessage = gui->get<tgui::Label>( "Message" );
         buttons.insert( {Scenes::MenuButtons::ModalYes, gui->get<tgui::Button>( "YesButton" )} );
         buttons.insert( {Scenes::MenuButtons::ModalNo, gui->get<tgui::Button>( "NoButton" )} );
         buttons.insert( {Scenes::MenuButtons::ModalOk, gui->get<tgui::Button>( "OkButton" )} );
-        // -------------------------
-        // -------------------------
     }
+
+    void MenuScene::initNewMenuModal( tgui::GuiSFML* gui, sf::Vector2f screenCenter )
+    {
+        modalNewChoiceGroup = tgui::Group::create();
+        modalNewChoiceGroup->loadWidgetsFromFile( resources->getResourcePath( "newChoices.txt" ));
+        gui->add( modalNewChoiceGroup );
+        newChoicesPanel = gui->get<tgui::Panel>( "MapChoicePanel" );
+        newChoicesPanel->setPosition( screenCenter.x - ( NEWMODAL_WIDTH / 2 ), screenCenter.y - ( NEWMODAL_HEIGHT / 2 ) );
+        newChoicesPanel->setVisible( false );
+        newChoicesSmall = gui->get<tgui::RadioButton>( "MapChoiceSizeSmall" );
+        newChoicesMedium = gui->get<tgui::RadioButton>( "MapChoiceSizeMedium" );
+        newChoicesLarge = gui->get<tgui::RadioButton>( "MapChoiceSizeLarge" );
+        buttons.insert( {Scenes::MenuButtons::NewOk, gui->get<tgui::Button>( "MapChoiceGoButton" )} );
+        buttons.insert( {Scenes::MenuButtons::NewCancel, gui->get<tgui::Button>( "MapChoiceCancelButton" )} );
+    }
+
 
     bool MenuScene::isLastGameAvailable()
     {
@@ -89,7 +115,7 @@ namespace Scenes
         {
             menuModalScreen->setVisible( true );
             modalPanel->setVisible( true );
-            modalTitle->setText( "No Saved Games Found" );
+            modalTitle->setText( "No Currently Running Game" );
             modalMessage->setText( "There is no game to continue from.  You might try creating a New game." );
             buttons[Scenes::MenuButtons::ModalYes]->setVisible( false );
             buttons[Scenes::MenuButtons::ModalNo]->setVisible( false );
@@ -100,22 +126,49 @@ namespace Scenes
 
     void MenuScene::newAction()
     {
-        // ------------------------
+        menuModalScreen->setVisible( true );
+        newChoicesPanel->setVisible( true );
+        buttons[Scenes::MenuButtons::NewOk]->onPress( &MenuScene::createNewMap, this );
+        buttons[Scenes::MenuButtons::NewCancel]->onPress( &MenuScene::closeNewChoiceModal, this );
+    }
+
+    void MenuScene::createNewMap()
+    {
+        closeNewChoiceModal();
+        if(newChoicesLarge->isChecked())
+        {
+            gameInfo.setDimensions({1000,1000});
+        }
+        else
+        {
+            if(newChoicesMedium->isChecked())
+            {
+                gameInfo.setDimensions({200,200});
+            }
+            else{
+                gameInfo.setDimensions({50,50});
+            }
+        }
+        gameInfo.setName("New Game");
+        gameActionFunc( COMMON::GameActions::New, gameInfo );
+    }
+
+    void MenuScene::closeNewChoiceModal()
+    {
+        menuModalScreen->setVisible( false );
+        newChoicesPanel->setVisible( false );
     }
 
     void MenuScene::loadAction()
     {
-        // ------------------------
     }
 
     void MenuScene::saveAction()
     {
-        // ------------------------
     }
 
-    void MenuScene::creditsAction()
+    void MenuScene::optionsAction()
     {
-        // ------------------------
     }
 
     void MenuScene::quitAction()
@@ -140,19 +193,19 @@ namespace Scenes
     void MenuScene::quitGame()
     {
         closeModal();
-        gameActionFunc( COMMON::GameActions::Quit );
+        gameActionFunc( COMMON::GameActions::Quit, gameInfo );
     }
 
     void MenuScene::show()
     {
         isHidden = false;
-        menuGroup->setVisible( !isHidden );
+        menuGroup->setVisible( true );
     }
 
     void MenuScene::hide()
     {
         isHidden = true;
-        menuGroup->setVisible( !isHidden );
+        menuGroup->setVisible( false );
     }
 
     bool MenuScene::isVisible()
@@ -234,8 +287,8 @@ namespace Scenes
                         case sf::Keyboard::S:
                             buttons[MenuButtons::Save]->setFocused( true );
                             break;
-                        case sf::Keyboard::D:
-                            buttons[MenuButtons::Credits]->setFocused( true );
+                        case sf::Keyboard::O:
+                            buttons[MenuButtons::Options]->setFocused( true );
                             break;
                         case sf::Keyboard::Q:
                             buttons[MenuButtons::Quit]->setFocused( true );

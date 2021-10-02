@@ -8,6 +8,8 @@
 #include "Scenes/menuscene.h"
 #include <TGUI/TGUI.hpp>
 #include "Life/utils.h"
+#include "Life/game.h"
+#include "Life/gameinfo.h"
 #include "mainlogger.h"
 
 namespace Life
@@ -31,12 +33,12 @@ namespace Life
         void run();
         void addScene(std::shared_ptr<Scenes::Scene> scene);
         void notifyEvent( sf::Event* what, std::shared_ptr<Scenes::Scene> subToSkip = 0 );
-        void menuAction(COMMON::GameActions action);
+        void menuAction(COMMON::GameActions action, GameInfo gameInfo);
         void quitGame();
     public:
         tgui::GuiSFML gui;
         bool notifyEnabled{true};
-        //gameActionFunc actionFunc;
+        Game game;
 
     protected:
 

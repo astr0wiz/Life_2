@@ -56,6 +56,7 @@
 		<Unit filename="include/ConvertUTF.h" />
 		<Unit filename="include/Life/game.h" />
 		<Unit filename="include/Life/gamebar.h" />
+		<Unit filename="include/Life/gameinfo.h" />
 		<Unit filename="include/Life/gamewindow.h" />
 		<Unit filename="include/Life/utils.h" />
 		<Unit filename="include/Scenes/menuscene.h" />
@@ -71,6 +72,7 @@
 		</Unit>
 		<Unit filename="src/Life/game.cpp" />
 		<Unit filename="src/Life/gamebar.cpp" />
+		<Unit filename="src/Life/gameinfo.cpp" />
 		<Unit filename="src/Life/gamewindow.cpp" />
 		<Unit filename="src/Life/utils.cpp" />
 		<Unit filename="src/Scenes/menuscene.cpp" />
