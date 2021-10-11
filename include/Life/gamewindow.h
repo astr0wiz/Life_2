@@ -38,7 +38,7 @@ namespace Life
     public:
         tgui::GuiSFML gui;
         bool notifyEnabled{true};
-        Game game;
+        std::unique_ptr<Game> game;
 
     protected:
 

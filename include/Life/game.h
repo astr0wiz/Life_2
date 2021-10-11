@@ -3,6 +3,7 @@
 
 #include <string>
 #include "Life/utils.h"
+#include "Life/gameinfo.h"
 #include <SFML/Window.hpp>
 namespace Life
 {
@@ -14,14 +15,15 @@ namespace Life
 
     public:
         bool isLoaded{false};
-        void setDimensions(sf::Vector2u dimensions);
+        void setInfo(GameInfo gameInfo);
+        void setAllDead();
 
     protected:
 
     private:
-        std::string saveFileName;
         std::string description;
-        sf::Vector2u mapDimensions;
+        std::vector<uint32_t> map;
+        GameInfo info;
     };
 
 }

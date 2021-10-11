@@ -1,0 +1,106 @@
+Panel.dtest_bkg {
+    Position = (110, 110);
+    Size = (310, 240);
+
+    Renderer {
+        BackgroundColor = transparent;
+        BorderColor = black;
+        TextureBackground = None;
+    }
+
+    Knob.dtest_knob_1 {
+        ClockwiseTurning = true;
+        EndRotation = 0;
+        Maximum = 100;
+        Minimum = 0;
+        Position = (10, 20);
+        Size = (150, 150);
+        StartRotation = 180;
+        Value = 0;
+
+        Renderer {
+            BackgroundColor = transparent;
+            BorderColor = black;
+            Borders = (0, 0, 0, 0);
+            ImageRotation = 0;
+            TextureBackground = None;
+            TextureForeground = "images/knobs-texture-s-1.png" Smooth;
+            ThumbColor = black;
+        }
+    }
+
+    Knob.dtest_knob_2 {
+        ClockwiseTurning = true;
+        EndRotation = 0;
+        Maximum = 100;
+        Minimum = 0;
+        Position = (160, 20);
+        Size = (150, 150);
+        StartRotation = 180;
+        Value = 0;
+
+        Renderer {
+            BackgroundColor = transparent;
+            BorderColor = black;
+            Borders = (0, 0, 0, 0);
+            ImageRotation = 0;
+            TextureBackground = None;
+            TextureForeground = "images/knobs-texture-s-1.png" Smooth;
+            ThumbColor = black;
+        }
+    }
+
+    Label.knob_label_1 {
+        HorizontalAlignment = Center;
+        Position = (10, 0);
+        Size = (157.2, 28);
+        Text = 50;
+        TextSize = 13;
+        VerticalAlignment = Center;
+
+        Renderer {
+            BackgroundColor = transparent;
+            BorderColor = #3C3C3C;
+            Borders = (0, 0, 0, 0);
+            Font = "fonts/ITCKRIST.TTF";
+            TextColor = #AFDFFF;
+            TextureBackground = None;
+        }
+    }
+
+    Label.knob_label_2 {
+        HorizontalAlignment = Center;
+        Position = (170, 0);
+        Size = (137.2, 28);
+        Text = 50;
+        TextSize = 13;
+        VerticalAlignment = Center;
+
+        Renderer {
+            BackgroundColor = transparent;
+            BorderColor = #A5FFDD;
+            Borders = (0, 0, 0, 0);
+            Font = "fonts/ITCKRIST.TTF";
+            TextColor = #A5FFDD;
+            TextureBackground = None;
+        }
+    }
+
+    Label.dtest_result {
+        HorizontalAlignment = Center;
+        Position = (100, 170);
+        Size = (117.2, 48);
+        Text = Label;
+        TextSize = 20;
+        VerticalAlignment = Center;
+
+        Renderer {
+            BackgroundColor = transparent;
+            BorderColor = #3C3C3C;
+            Borders = (0, 0, 0, 0);
+            Font = "fonts/ITCKRIST.TTF";
+            TextColor = white;
+            TextureBackground = "images/button-border.png" Middle(15, 2, 2, 28) Smooth;
+        }
+    }
+}

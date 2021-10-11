@@ -14,9 +14,18 @@ namespace Life
         //dtor
     }
 
-    void Game::setDimensions(sf::Vector2u dimensions)
+    void Game::setInfo( GameInfo gameInfo )
     {
-        mapDimensions = dimensions;
+        info = gameInfo;
+        map.reserve( info.getMapSize() );
+    }
+
+    void Game::setAllDead()
+    {
+        for(unsigned int i = 0; i < map.size(); i++)
+        {
+            map[i] = 0;
+        }
     }
 
 }

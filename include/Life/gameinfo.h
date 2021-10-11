@@ -18,6 +18,7 @@ namespace Life
         std::string getName();
         std::string getFilename();
         sf::Vector2u getDimensions();
+        uint64_t getMapSize();
 
     private:
         std::string _name;

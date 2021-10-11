@@ -21,7 +21,7 @@ namespace Scenes
     {
         const int TITLE_CHAR_SIZE = 120;
 
-        gameInfo.setName("");
+       gameInfo.setName("");
         gameInfo.setFilename("");
         gameInfo.setDimensions({0,0});
         resources = resourceManager;
@@ -45,6 +45,28 @@ namespace Scenes
         initMenu( gui, screenCenter );
         initGenericModal( gui, screenCenter );
         initNewMenuModal( gui, screenCenter );
+        initTestControls( gui, screenCenter );
+    }
+
+    void MenuScene::initTestControls( tgui::GuiSFML* gui, sf::Vector2f screenCenter)
+    {
+        testControlsGroup = tgui::Group::create();
+        testControlsGroup->loadWidgetsFromFile( resources->getResourcePath( "disc_control.txt" ));
+        gui->add( testControlsGroup );
+        // -------------------------
+        tgui::Panel::Ptr panel = gui->get<tgui::Panel>( "dtest_bkg" );
+        panel->setPosition(50,100);
+        // -------------------------
+        knob1 = gui->get<tgui::Knob>( "dtest_knob_1" );
+        knob2 = gui->get<tgui::Knob>( "dtest_knob_2" );
+        knobResult = gui->get<tgui::Label>( "dtest_result" );
+        knob1->setValue(50);
+        knob2->setValue(50);
+        knobLabel1 = gui->get<tgui::Label>( "knob_label_1" );
+        knobLabel2 = gui->get<tgui::Label>( "knob_label_2" );
+        knob1->onValueChange( &MenuScene::testAction, this);
+        knob2->onValueChange( &MenuScene::testAction, this);
+        testAction();
     }
 
     void MenuScene::initMenu( tgui::GuiSFML* gui, sf::Vector2f screenCenter )
@@ -107,6 +129,24 @@ namespace Scenes
     bool MenuScene::isLastGameAvailable()
     {
         return false;
+    }
+
+    void MenuScene::testAction()
+    {
+        std::ostringstream os;
+        auto displayedValue = (ceil(knob1->getValue()) * 100) + ceil(knob2->getValue());
+        os << std::fixed << std::setprecision(0);
+        os << ceil(knob1->getValue());
+        knobLabel1->setText(os.str());
+        os.str("");
+        os.clear();
+        os << ceil(knob2->getValue());
+        knobLabel2->setText(os.str());
+        os.str("");
+        os.clear();
+        os << displayedValue;
+        //MainLogger::Instance().Log( os.str() );
+        knobResult->setText(os.str());
     }
 
     void MenuScene::continueAction()

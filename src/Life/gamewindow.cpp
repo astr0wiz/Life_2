@@ -77,6 +77,8 @@ namespace Life
             Allow editing, zooming, changing animation speed...
 
             */
+            game = std::make_unique<Game>();
+            game->setInfo(gameInfo);
         }
     }
 

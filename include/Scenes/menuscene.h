@@ -6,6 +6,7 @@
 #include <SFML/Graphics.hpp>
 #include "Assets/Colors.h"
 #include "Life/gameinfo.h"
+#include <math.h>
 #include <iostream>
 
 namespace Scenes
@@ -67,6 +68,14 @@ namespace Scenes
         tgui::RadioButton::Ptr newChoicesMedium;
         tgui::RadioButton::Ptr newChoicesLarge;
         tgui::RadioButtonGroup::Ptr newChoicesButtonGroup;
+        //------------Test Stuff-------------
+        tgui::Group::Ptr testControlsGroup;
+        tgui::Knob::Ptr knob1;
+        tgui::Knob::Ptr knob2;
+        tgui::Label::Ptr knobResult;
+        tgui::Label::Ptr knobLabel1;
+        tgui::Label::Ptr knobLabel2;
+        u_int32_t knobTotal;
 
 
     private:
@@ -74,6 +83,7 @@ namespace Scenes
         void initMenu(tgui::GuiSFML* gui, sf::Vector2f screenCenter);
         void initGenericModal(tgui::GuiSFML* gui, sf::Vector2f screenCenter);
         void initNewMenuModal(tgui::GuiSFML* gui, sf::Vector2f screenCenter);
+        void initTestControls(tgui::GuiSFML* gui, sf::Vector2f screenCenter);
         void processButtonClick(MenuButtons selection);
         bool isLastGameAvailable();
         // -------- Menu Actions ----------
@@ -83,6 +93,7 @@ namespace Scenes
         void saveAction();
         void optionsAction();
         void quitAction();
+        void testAction();
         // ---------------------------------
         void quitGame();
         void closeModal();

@@ -44,5 +44,10 @@ namespace Life
         return _dimensions;
     }
 
+    uint64_t GameInfo::getMapSize()
+    {
+        return _dimensions.x * _dimensions.y;
+    }
+
 }
 
