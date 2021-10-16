@@ -70,12 +70,13 @@ namespace Scenes
         tgui::RadioButtonGroup::Ptr newChoicesButtonGroup;
         //------------Test Stuff-------------
         tgui::Group::Ptr testControlsGroup;
-        tgui::Knob::Ptr knob1;
-        tgui::Knob::Ptr knob2;
+        tgui::Slider::Ptr knob1;
+        tgui::Slider::Ptr knob2;
         tgui::Label::Ptr knobResult;
         tgui::Label::Ptr knobLabel1;
         tgui::Label::Ptr knobLabel2;
         u_int32_t knobTotal;
+        tgui::CheckBox::Ptr lockCheckBox;
 
 
     private:

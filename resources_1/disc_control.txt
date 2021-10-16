@@ -100,7 +100,7 @@ Panel.dtest_bkg {
             Borders = (0, 0, 0, 0);
             Font = "fonts/ITCKRIST.TTF";
             TextColor = white;
-            TextureBackground = "images/button-border.png" Middle(15, 2, 2, 28) Smooth;
+            TextureBackground = "images/button-border.png" Middle(15, 15, 2, 2) Smooth;
         }
     }
 }

@@ -1,0 +1,281 @@
+Panel.dtest_bkg {
+    Size = (725, 596.349);
+
+    Renderer {
+        BackgroundColor = #00151F;
+        BorderColor = black;
+        Borders = (0, 0, 0, 0);
+        TextureBackground = "images/border.png" Middle(22, 22, 2, 2) Smooth;
+    }
+
+    Slider.spacing_horizontal {
+        ChangeValueOnScroll = true;
+        InvertedDirection = false;
+        Maximum = 300;
+        Minimum = 75;
+        Position = (120, 78);
+        Size = (200, 16);
+        Step = 1;
+        Value = 150;
+
+        Renderer {
+            BorderColor = #3C3C3C;
+            BorderColorHover = black;
+            Borders = (1, 1, 1, 1);
+            TextureThumb = None;
+            TextureThumbHover = None;
+            TextureTrack = None;
+            TextureTrackHover = None;
+            ThumbColor = #F5F5F5;
+            ThumbColorHover = white;
+            TrackColor = #F5F5F5;
+            TrackColorHover = white;
+        }
+    }
+
+    Slider.spacing_vertical {
+        ChangeValueOnScroll = true;
+        Enabled = false;
+        InvertedDirection = true;
+        Maximum = 300;
+        Minimum = 75;
+        Position = (90, 110);
+        Size = (16, 200);
+        Step = 1;
+        Value = 150;
+
+        Renderer {
+            BorderColor = #3C3C3C;
+            BorderColorHover = black;
+            Borders = (1, 1, 1, 1);
+            Opacity = 0.3;
+            TextureThumb = None;
+            TextureThumbHover = None;
+            TextureTrack = None;
+            TextureTrackHover = None;
+            ThumbColor = #F5F5F5;
+            ThumbColorHover = white;
+            TrackColor = #F5F5F5;
+            TrackColorHover = white;
+        }
+    }
+
+    Label.Label1 {
+        HorizontalAlignment = Center;
+        Position = (20, 180);
+        Size = (77.2, 58);
+        Text = "Vertical Spacing";
+        TextSize = 13;
+        VerticalAlignment = Center;
+
+        Renderer {
+            BackgroundColor = transparent;
+            BorderColor = #3C3C3C;
+            Borders = (0, 0, 0, 0);
+            Font = "fonts/ITCKRIST.TTF";
+            TextColor = #C8C8C8;
+            TextureBackground = None;
+        }
+    }
+
+    Label.Label4 {
+        AutoSize = true;
+        Position = (160, 50);
+        Size = (126, 17);
+        Text = "Horizontal Spacing";
+        TextSize = 13;
+
+        Renderer {
+            BackgroundColor = transparent;
+            BorderColor = #3C3C3C;
+            Borders = (0, 0, 0, 0);
+            Font = "fonts/ITCKRIST.TTF";
+            TextColor = #C8C8C8;
+            TextureBackground = None;
+        }
+    }
+
+    Label.dtest_result {
+        HorizontalAlignment = Center;
+        Position = (530, 470);
+        Size = (157.2, 58);
+        Text = Label;
+        TextSize = 22;
+        VerticalAlignment = Center;
+        Visible = false;
+
+        Renderer {
+            BackgroundColor = transparent;
+            BorderColor = #3C3C3C;
+            Borders = (0, 0, 0, 0);
+            Font = "fonts/ITCKRIST.TTF";
+            TextColor = white;
+            TextureBackground = "images/button-border.png" Middle(15, 15, 2, 2) Smooth;
+        }
+    }
+
+    Panel.Panel2 {
+        Position = (120, 110);
+        Size = (570, 450);
+
+        Renderer {
+            BackgroundColor = #6F5D59;
+            BorderColor = black;
+            Borders = (3, 3, 3, 3);
+            TextureBackground = None;
+        }
+
+        Panel.Cell_00 {
+            Size = (150, 150);
+
+            Renderer {
+                BackgroundColor = transparent;
+                BorderColor = black;
+                Borders = (1, 1, 1, 1);
+                TextureBackground = "images/adj-cell-bkg-cropped.png" Smooth;
+            }
+        }
+    }
+
+    CheckBox.spacing_locker {
+        Checked = true;
+        Position = (36, 76);
+        Size = (18, 18);
+        Text = Unlock;
+        TextSize = 13;
+
+        Renderer {
+            BackgroundColor = #F5F5F5;
+            BackgroundColorDisabled = #E6E6E6;
+            BackgroundColorHover = white;
+            BorderColor = #3C3C3C;
+            BorderColorDisabled = #7D7D7D;
+            BorderColorFocused = #1E1EB4;
+            BorderColorHover = black;
+            Borders = (1, 1, 1, 1);
+            CheckColor = #3C3C3C;
+            CheckColorDisabled = #7D7D7D;
+            CheckColorHover = black;
+            Font = "fonts/ITCKRIST.TTF";
+            TextColor = #C8C8C8;
+            TextColorDisabled = #7D7D7D;
+            TextColorHover = white;
+            TextDistanceRatio = 0.2;
+            TextureChecked = None;
+            TextureCheckedDisabled = None;
+            TextureCheckedFocused = None;
+            TextureCheckedHover = None;
+            TextureUnchecked = None;
+            TextureUncheckedDisabled = None;
+            TextureUncheckedFocused = None;
+            TextureUncheckedHover = None;
+        }
+    }
+
+    Button.spacing_defaults {
+        Position = (580, 56);
+        Size = (110, 42);
+        Text = Defaults;
+        TextSize = 16;
+
+        Renderer {
+            BackgroundColor = white;
+            BackgroundColorDisabled = #E6E6E6;
+            BackgroundColorDown = #EBEBEB;
+            BackgroundColorHover = #F5FFD5;
+            BorderColor = #3C3C3C;
+            BorderColorDisabled = #7D7D7D;
+            BorderColorDown = black;
+            BorderColorFocused = #1E1EB4;
+            BorderColorHover = #D9FF30;
+            Borders = (0, 0, 0, 0);
+            Font = "fonts/ITCKRIST.TTF";
+            TextColor = #C8C8C8;
+            TextColorDisabled = #7D7D7D;
+            TextColorDown = black;
+            TextColorHover = white;
+            Texture = "images/button-border.png" Middle(15, 15, 2, 2) Smooth;
+            TextureDisabled = None;
+            TextureDown = None;
+            TextureDownFocused = None;
+            TextureDownHover = None;
+            TextureFocused = None;
+            TextureHover = None;
+        }
+    }
+
+    Panel.Panel1 {
+        Position = (20, 20);
+        Size = (680, 24);
+
+        Renderer {
+            BackgroundColor = #FFFFFF33;
+            BorderColor = black;
+            TextureBackground = None;
+        }
+
+        BitmapButton.spacing_close_button {
+            Image = None;
+            ImageScaling = 0;
+            Position = (1, 1);
+            Size = (22, 22);
+            TextSize = 13;
+
+            Renderer {
+                BackgroundColor = #F5F5F5;
+                BackgroundColorDisabled = #E6E6E6;
+                BackgroundColorDown = #EBEBEB;
+                BackgroundColorHover = white;
+                BorderColor = #3C3C3C;
+                BorderColorDisabled = #7D7D7D;
+                BorderColorDown = black;
+                BorderColorFocused = #1E1EB4;
+                BorderColorHover = black;
+                Borders = (1, 1, 1, 1);
+                TextColor = #3C3C3C;
+                TextColorDisabled = #7D7D7D;
+                TextColorDown = black;
+                TextColorHover = black;
+                Texture = "images/button-map-64.png" Part(0, 0, 64, 64) Smooth;
+                TextureDisabled = None;
+                TextureDown = None;
+                TextureDownFocused = None;
+                TextureDownHover = None;
+                TextureFocused = None;
+                TextureHover = None;
+            }
+        }
+    }
+
+    Label.spacing_h_label {
+        AutoSize = true;
+        Position = (330, 78);
+        Size = (32.2, 18);
+        Text = "-999";
+        TextSize = 13;
+
+        Renderer {
+            BackgroundColor = transparent;
+            BorderColor = #3C3C3C;
+            Borders = (0, 0, 0, 0);
+            TextColor = #C8C8C8;
+            TextureBackground = None;
+        }
+    }
+
+    Label.spacing_v_label {
+        AutoSize = true;
+        Position = (80, 320);
+        Size = (32.2, 18);
+        Text = "-999";
+        TextSize = 13;
+
+        Renderer {
+            BackgroundColor = transparent;
+            BorderColor = #3C3C3C;
+            Borders = (0, 0, 0, 0);
+            TextColor = #C8C8C8;
+            TextureBackground = None;
+        }
+    }
+}

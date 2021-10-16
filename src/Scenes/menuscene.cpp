@@ -21,9 +21,9 @@ namespace Scenes
     {
         const int TITLE_CHAR_SIZE = 120;
 
-       gameInfo.setName("");
-        gameInfo.setFilename("");
-        gameInfo.setDimensions({0,0});
+        gameInfo.setName( "" );
+        gameInfo.setFilename( "" );
+        gameInfo.setDimensions( {0, 0} );
         resources = resourceManager;
         utils = utilities;
         gameActionFunc = gameAction;
@@ -48,24 +48,26 @@ namespace Scenes
         initTestControls( gui, screenCenter );
     }
 
-    void MenuScene::initTestControls( tgui::GuiSFML* gui, sf::Vector2f screenCenter)
+    void MenuScene::initTestControls( tgui::GuiSFML* gui, sf::Vector2f screenCenter )
     {
+        std::cout << "init start" << std::endl;
         testControlsGroup = tgui::Group::create();
-        testControlsGroup->loadWidgetsFromFile( resources->getResourcePath( "disc_control.txt" ));
+        testControlsGroup->loadWidgetsFromFile( resources->getResourcePath( "slider_control.txt" ) );
         gui->add( testControlsGroup );
         // -------------------------
         tgui::Panel::Ptr panel = gui->get<tgui::Panel>( "dtest_bkg" );
-        panel->setPosition(50,100);
+        panel->setPosition( 50, 100 );
         // -------------------------
-        knob1 = gui->get<tgui::Knob>( "dtest_knob_1" );
-        knob2 = gui->get<tgui::Knob>( "dtest_knob_2" );
-        knobResult = gui->get<tgui::Label>( "dtest_result" );
-        knob1->setValue(50);
-        knob2->setValue(50);
-        knobLabel1 = gui->get<tgui::Label>( "knob_label_1" );
-        knobLabel2 = gui->get<tgui::Label>( "knob_label_2" );
+        knob1 = gui->get<tgui::Slider>( "spacing_horizontal" );
+        knob2 = gui->get<tgui::Slider>( "spacing_vertical" );
+        lockCheckBox = gui->get<tgui::CheckBox>("spacing_locker");
+        knob1->setValue( 150 );
+        knob2->setValue( 150 );
+        knobLabel1 = gui->get<tgui::Label>( "spacing_h_label" );
+        knobLabel2 = gui->get<tgui::Label>( "spacing_v_label" );
         knob1->onValueChange( &MenuScene::testAction, this);
         knob2->onValueChange( &MenuScene::testAction, this);
+        std::cout << "init end" << std::endl;
         testAction();
     }
 
@@ -113,7 +115,7 @@ namespace Scenes
     void MenuScene::initNewMenuModal( tgui::GuiSFML* gui, sf::Vector2f screenCenter )
     {
         modalNewChoiceGroup = tgui::Group::create();
-        modalNewChoiceGroup->loadWidgetsFromFile( resources->getResourcePath( "newChoices.txt" ));
+        modalNewChoiceGroup->loadWidgetsFromFile( resources->getResourcePath( "newChoices.txt" ) );
         gui->add( modalNewChoiceGroup );
         newChoicesPanel = gui->get<tgui::Panel>( "MapChoicePanel" );
         newChoicesPanel->setPosition( screenCenter.x - ( NEWMODAL_WIDTH / 2 ), screenCenter.y - ( NEWMODAL_HEIGHT / 2 ) );
@@ -133,20 +135,23 @@ namespace Scenes
 
     void MenuScene::testAction()
     {
+        if(lockCheckBox->isChecked())
+        {
+            knob2->setValue(knob1->getValue());
+        }
         std::ostringstream os;
-        auto displayedValue = (ceil(knob1->getValue()) * 100) + ceil(knob2->getValue());
-        os << std::fixed << std::setprecision(0);
-        os << ceil(knob1->getValue());
-        knobLabel1->setText(os.str());
-        os.str("");
-        os.clear();
-        os << ceil(knob2->getValue());
-        knobLabel2->setText(os.str());
-        os.str("");
-        os.clear();
+        auto displayedValue = knob1->getValue() - 150;
+        os << ( displayedValue >= 0 ? "+" : "-" );
         os << displayedValue;
-        //MainLogger::Instance().Log( os.str() );
-        knobResult->setText(os.str());
+        knobLabel1->setText( os.str() );
+        os.str( "" );
+        os.clear();
+        displayedValue = knob2->getValue() - 150;
+        os << ( displayedValue >= 0 ? "+" : "-" );
+        os << displayedValue;
+        knobLabel1->setText( os.str() );
+        os.str( "" );
+        os.clear();
     }
 
     void MenuScene::continueAction()
@@ -175,21 +180,22 @@ namespace Scenes
     void MenuScene::createNewMap()
     {
         closeNewChoiceModal();
-        if(newChoicesLarge->isChecked())
+        if( newChoicesLarge->isChecked() )
         {
-            gameInfo.setDimensions({1000,1000});
+            gameInfo.setDimensions( {1000, 1000} );
         }
         else
         {
-            if(newChoicesMedium->isChecked())
+            if( newChoicesMedium->isChecked() )
             {
-                gameInfo.setDimensions({200,200});
+                gameInfo.setDimensions( {200, 200} );
             }
-            else{
-                gameInfo.setDimensions({50,50});
+            else
+            {
+                gameInfo.setDimensions( {50, 50} );
             }
         }
-        gameInfo.setName("New Game");
+        gameInfo.setName( "New Game" );
         gameActionFunc( COMMON::GameActions::New, gameInfo );
     }
 
